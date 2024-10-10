@@ -76,7 +76,7 @@ return true;
 
 <!-- breadcrumbs -->
 <section class="w3l-inner-banner-main">
-    <div class="about-inner contact ">
+    <!-- <div class="about-inner contact ">
         <div class="container">   
             <div class="main-titles-head text-center">
             <h3 class="header-name ">
@@ -85,7 +85,7 @@ return true;
             </h3>
         </div>
 </div>
-</div>
+</div> -->
 <div class="breadcrumbs-sub">
 <div class="container">   
 <ul class="breadcrumbs-custom-path">
@@ -103,51 +103,7 @@ return true;
         <div class="container">
 
             <div class="d-grid contact-view">
-                <div class="cont-details">
-                    <?php
-
-$ret=mysqli_query($con,"select * from tblpage where PageType='contactus' ");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
-?>
-                    <div class="cont-top">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-phone text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Call Us</h6>
-                            <p class="para"><a href="tel:+44 99 555 42">+<?php  echo $row['MobileNumber'];?></a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-envelope-o text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Email Us</h6>
-                            <p class="para"><a href="mailto:example@mail.com" class="mail"><?php  echo $row['Email'];?></a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-map-marker text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Address</h6>
-                            <p class="para"> <?php  echo $row['PageDescription'];?></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-map-marker text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Time</h6>
-                            <p class="para"> <?php  echo $row['Timing'];?></p>
-                        </div>
-                    </div>
-               <?php } ?> </div>
+                
                 <div class="map-content-9 mt-lg-0 mt-4">
                     <h3>Register with us!!</h3>
                     <form method="post" name="signup" onsubmit="return checkpass();">
@@ -174,6 +130,8 @@ while ($row=mysqli_fetch_array($ret)) {
                         <label>Repeat password</label>
                             <input type="password" class="form-control" name="repeatpassword" placeholder="Repeat password" required="true">
                         </div>
+
+                        <a class="nav-link" href="login.php">Already have an account? Login</a>
                       
                         <button type="submit" class="btn btn-contact" name="submit">Signup</button>
                     </form>
