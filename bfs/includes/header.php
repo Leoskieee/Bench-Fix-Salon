@@ -1,3 +1,64 @@
+<style>
+    #navbarNav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    details.dropdown {
+        position: relative;
+        z-index: 1000;
+    }
+
+    summary.dropdown-button {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: white;
+        cursor: pointer;
+        font-size: 24px;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary::marker {
+        display: none;
+    }
+
+    .dropdown-content {
+        width: max-content;
+        position: absolute;
+        right: 0;
+        z-index: 10;
+        border-radius: 0.2rem;
+        background-color: white;
+        margin-top: 0.5rem;
+        overflow: hidden;
+    }
+
+    .dropdown a.nav-link {
+        display: block;
+        padding: 10px;
+        border-radius: 0;
+        background-color: #f9f9f9;
+        color: black;
+        text-decoration: none;
+    }
+
+    .dropdown a.nav-link:hover {
+        color: #fff;
+        background-color: #6f42c1;
+    }
+
+</style>
+
 <section class=" w3l-header-4 header-sticky">
     <header class="absolute-top">
         <div class="container">
@@ -33,34 +94,43 @@
                         <a class="nav-link" href="admin/index.php">Admin</a>
                     </li> -->
                      <li class="nav-item">
-                        <a class="nav-link" href="signup.php">Signup</a>
+                        <a class="nav-link" href="signup.php" target="_blank">Signup</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
+                        <a class="nav-link" href="login.php" target="_blank">Login</a>
                     </li><?php }?>
-                    <?php if (strlen($_SESSION['bpmsuid']>0)) {?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="book-appointment.php">Book Salon</a>
-                    </li>
                     
-                    <li class="nav-item">
-                        <a class="nav-link" href="booking-history.php">Booking History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="invoice-history.php">Invoice History</a>
-                    </li>
-                                        <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                                        <li class="nav-item">
-                        <a class="nav-link" href="change-password.php">Setting</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                  <?php }?>
                 </ul>
-                
+                <?php if (strlen($_SESSION['bpmsuid']>0)) {?>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="book-appointment.php">Book Salon</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="booking-history.php">Booking History</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="invoice-history.php">Invoice History</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="profile.php">Profile</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <details class="dropdown">
+                            <summary class="dropdown-button">☰</summary>
+                            <div class="dropdown-content">
+                                <a class="nav-link" href="profile.php">Profile</a>
+                                <a class="nav-link" href="change-password.php">Setting</a>
+                                <a class="nav-link" href="booking-history.php">Booking History</a>
+                                <a class="nav-link" href="book-appointment.php">Book Salon</a>
+                                <a class="nav-link" href="logout.php">Logout</a>
+                            </div>
+                        </details>
+                        <!-- <a class="nav-link" href="change-password.php">Setting</a> -->
+                    </li>
+                     <!-- <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li> -->
+                  <?php }?>
             </div>
         </div>
 

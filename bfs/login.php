@@ -62,7 +62,7 @@ $(function () {
 
 <!-- breadcrumbs -->
 <section class="w3l-inner-banner-main">
-    <div class="about-inner contact ">
+    <!-- <div class="about-inner contact ">
         <div class="container">   
             <div class="main-titles-head text-center">
             <h3 class="header-name ">
@@ -71,7 +71,7 @@ $(function () {
             </h3>
         </div>
 </div>
-</div>
+</div> -->
 <div class="breadcrumbs-sub">
 <div class="container">   
 <ul class="breadcrumbs-custom-path">
@@ -89,51 +89,7 @@ $(function () {
         <div class="container">
 
             <div class="d-grid contact-view">
-                <div class="cont-details">
-                    <?php
-
-$ret=mysqli_query($con,"select * from tblpage where PageType='contactus' ");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
-?>
-                    <div class="cont-top">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-phone text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Call Us</h6>
-                            <p class="para"><a href="tel:+44 99 555 42">+0917-6838-349<?php  echo $row[''];?></a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-envelope-o text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Email Us</h6>
-                            <p class="para"><a href="mailto:example@mail.com" class="mail">fixsocialcommerce@benchmail.ph<?php  echo $row['Email'];?></a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-map-marker text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Address</h6>
-                            <p class="para"> <?php  echo $row['PageDescription'];?></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-map-marker text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Time</h6>
-                            <p class="para"> <?php  echo $row['Timing'];?></p>
-                        </div>
-                    </div>
-               <?php } ?> </div>
+                
                 <div class="map-content-9 mt-lg-0 mt-4">
                     <form method="post">
                         <div>
@@ -145,9 +101,9 @@ while ($row=mysqli_fetch_array($ret)) {
                         
                         </div>
                         
-                        <div class="twice-two" style="padding-top: 30px;">
-                          <a class="link--gray" style="color: blue;" href="forgot-password.php">Forgot Password?</a>
-                        
+                        <div class="twice-two fl-c" style="margin-bottom: 0;">
+                            <a class="nav-link" href="signup.php">Don't have an account yet? Signup</a>
+                            <a class="link--gray" style="color: blue; justify-self: flex-end;" href="forgot-password.php">Forgot Password?</a>
                         </div>
                         <button type="submit" class="btn btn-contact" name="login">Login</button>
                     </form>

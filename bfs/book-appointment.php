@@ -12,10 +12,11 @@ if(isset($_POST['submit']))
     $uid=$_SESSION['bpmsuid'];
     $adate=$_POST['adate'];
     $atime=$_POST['atime'];
+    $service=$_POST['service'];
     $msg=$_POST['message'];
     $aptnumber = mt_rand(100000000, 999999999);
   
-    $query=mysqli_query($con,"insert into tblbook(UserID,AptNumber,AptDate,AptTime,Message) value('$uid','$aptnumber','$adate','$atime','$msg')");
+    $query=mysqli_query($con,"insert into tblbook(UserID,AptNumber,AptDate,AptTime, Service, Message) value('$uid','$aptnumber','$adate','$atime','$service', '$msg')");
 
     if ($query) {
 $ret=mysqli_query($con,"select AptNumber from tblbook where tblbook.UserID='$uid' order by ID desc limit 1;");
@@ -91,51 +92,7 @@ $(function () {
         <div class="container">
 
             <div class="d-grid contact-view">
-                <div class="cont-details">
-                    <?php
-
-$ret=mysqli_query($con,"select * from tblpage where PageType='contactus' ");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
-?>
-                    <div class="cont-top">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-phone text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Call Us</h6>
-                            <p class="para"><a href="tel:+44 99 555 42">+<?php  echo $row['MobileNumber'];?></a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-envelope-o text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Email Us</h6>
-                            <p class="para"><a href="mailto:example@mail.com" class="mail"><?php  echo $row['Email'];?></a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-map-marker text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Address</h6>
-                            <p class="para"> <?php  echo $row['PageDescription'];?></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-map-marker text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Time</h6>
-                            <p class="para"> <?php  echo $row['Timing'];?></p>
-                        </div>
-                    </div>
-               <?php } ?> </div>
+                
                 <div class="map-content-9 mt-lg-0 mt-4">
                     <form method="post">
                         <div style="padding-top: 30px;">
@@ -146,6 +103,19 @@ while ($row=mysqli_fetch_array($ret)) {
                             <label>Appointment Time</label>
                             
                             <input type="time" class="form-control appointment_time" placeholder="Time" name="atime" id='atime' required="true"></div>
+                        
+                        <div style="padding-top: 30px;">
+                            <label>Select Service</label>
+                            <select class="form-control" name="service" required="true">
+                                <option value="">Choose a service</option>
+                                <option value="Haircut">Haircut</option>
+                                <option value="Hair Color">Hair Color</option>
+                                <option value="Hair Treatment">Hair Treatment</option>
+                                <option value="Manicure">Manicure</option>
+                                <option value="Pedicure">Pedicure</option>
+                                <option value="Facial">Facial</option>
+                            </select>
+                        </div>
 
                         <div style="padding-top: 30px;">
                         <textarea class="form-control" id="message" name="message" placeholder="Message" required=""></textarea></div>

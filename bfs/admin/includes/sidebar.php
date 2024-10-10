@@ -31,8 +31,8 @@
             </li>
           
             <li>
-              <a href="all-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Appointment<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level collapse">
+              <a href="all-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Appointment</a>
+              <!-- <ul class="nav nav-second-level collapse">
                 <li>
                   <a href="all-appointment.php">All Appointment</a>
                 </li>
@@ -45,7 +45,7 @@
                 <li>
                   <a href="rejected-appointment.php">Rejected Appointment</a>
                 </li>
-              </ul>
+              </ul> -->
               <!-- //nav-second-level -->
             </li>
            
@@ -72,15 +72,15 @@
               <!-- //nav-second-level -->
             </li>
 
-    <li>
+            <!-- <li>
               <a href="invoices.php" class="chart-nav"><i class="fa fa-file-text-o nav_icon"></i>Invoices</a>
-            </li>
+            </li> -->
             <li>
               <a href="search-appointment.php" class="chart-nav"><i class="fa fa-search nav_icon"></i>Search Appointment</a>
             </li>
-            <li>
+            <!-- <li>
               <a href="search-invoices.php" class="chart-nav"><i class="fa fa-search nav_icon"></i>Search Invoice</a>
-            </li>
+            </li> -->
           
 
           </ul>
