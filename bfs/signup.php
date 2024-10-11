@@ -44,9 +44,51 @@ echo "<script>alert('This email or Contact Number already associated with anothe
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <style>
+      .user-form {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: row-reverse;
+      }
+      .user-form > * {
+        width: 100%;
+      }
+
+      .w3l-inner-banner-main {
+        background-repeat: repeat;
+        background: url("./assets/images/b8.jpg") no-repeat bottom center;
+        background-size: cover !important;
+      }
+
+      .w3l-inner-banner-main .about-inner:before, .w3l-inner-banner-main .contact {
+        background: none !important;
+      }
+
+      /* form */
+      .w3l-contact-info-main .container {
+        padding-inline: 6rem;
+      }
+
+      .field-group {
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+      }
+
+      .field-group > * {
+        width: 100%;
+      }
+
+      .w3l-contact-info-main .container .nav-link {
+        padding-inline: 0;
+        padding-block: 1rem;
+      }
+    </style>
   </head>
-  <body id="home">
-<?php include_once('includes/header.php');?>
+  <body id="home" class="user-form">
+<?php // include_once('includes/header.php');?>
 
 <script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
 <!--bootstrap working-->
@@ -76,17 +118,14 @@ return true;
 
 <!-- breadcrumbs -->
 <section class="w3l-inner-banner-main">
-    <!-- <div class="about-inner contact ">
+    <div class="about-inner contact">
         <div class="container">   
             <div class="main-titles-head text-center">
-            <h3 class="header-name ">
-                
- 
-            </h3>
+              <h3 class="header-name "></h3>
+            </div>
         </div>
-</div>
-</div> -->
-<div class="breadcrumbs-sub">
+    </div>
+<!-- <div class="breadcrumbs-sub">
 <div class="container">   
 <ul class="breadcrumbs-custom-path">
     <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
@@ -94,7 +133,7 @@ return true;
         Signup</li>
 </ul>
 </div>
-</div>
+</div> -->
     </div>
 </section>
 <!-- breadcrumbs //-->
@@ -105,22 +144,28 @@ return true;
             <div class="d-grid contact-view">
                 
                 <div class="map-content-9 mt-lg-0 mt-4">
-                    <h3>Register with us!!</h3>
+                    <h3 style="color: #6f42c1; font-weight: 900;">Register with us!</h3>
                     <form method="post" name="signup" onsubmit="return checkpass();">
 
-                        <div style="padding-top: 30px;">
+                        <div class="field-group">
+                          <div style="padding-top: 30px;">
                             <label>First Name</label>
                             <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name" required=""></div>
                            <div style="padding-top: 30px;">
                             <label>Last Name</label>
                             <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name" required="">
                         </div>
-                        <div style="padding-top: 30px;">
-                            <label>Mobile Number</label>
-                           <input type="text" class="form-control" placeholder="Mobile Number" required="" name="mobilenumber" pattern="[0-9]+" maxlength="10"></div>
-                           <div style="padding-top: 30px;">
-                            <label>Email address</label>
-                            <input type="email" class="form-control" class="form-control" placeholder="Email address" required="" name="email">
+                        
+                        </div>
+
+                        <div class="field-group">
+                          <div style="padding-top: 30px;">
+                              <label>Mobile Number</label>
+                            <input type="text" class="form-control" placeholder="Mobile Number" required="" name="mobilenumber" pattern="[0-9]+" maxlength="10"></div>
+                            <div style="padding-top: 30px;">
+                              <label>Email address</label>
+                              <input type="email" class="form-control" class="form-control" placeholder="Email address" required="" name="email">
+                          </div>
                         </div>
                          <div style="padding-top: 30px;">
                             <label>Password</label>
@@ -140,7 +185,7 @@ return true;
    
     </div></div>
 </section>
-<?php include_once('includes/footer.php');?>
+<!-- <?php include_once('includes/footer.php');?> -->
 <!-- move top -->
 <button onclick="topFunction()" id="movetop" title="Go to top">
 	<span class="fa fa-long-arrow-up"></span>

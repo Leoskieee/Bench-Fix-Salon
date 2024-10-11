@@ -42,9 +42,40 @@ if(isset($_POST['login']))
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+      .user-form {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: row-reverse;
+      }
+      .user-form > * {
+        width: 100%;
+      }
+
+      .w3l-inner-banner-main {
+        background-repeat: repeat;
+        background: url("./assets/images/b8.jpg") no-repeat bottom center;
+        background-size: cover !important;
+      }
+
+      .w3l-inner-banner-main .about-inner:before, .w3l-inner-banner-main .contact {
+        background: none !important;
+      }
+
+      /* form */
+      .w3l-contact-info-main .container {
+        padding-inline: 6rem;
+      }
+
+      .w3l-contact-info-main .container .nav-link {
+        padding-inline: 0;
+        padding-block: 1rem;
+      }
+    </style>
   </head>
-  <body id="home">
-<?php include_once('includes/header.php');?>
+  <body id="home" class="user-form">
+<?php // include_once('includes/header.php');?>
 
 <script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
 <!--bootstrap working-->
@@ -62,7 +93,7 @@ $(function () {
 
 <!-- breadcrumbs -->
 <section class="w3l-inner-banner-main">
-    <!-- <div class="about-inner contact ">
+    <div class="about-inner contact ">
         <div class="container">   
             <div class="main-titles-head text-center">
             <h3 class="header-name ">
@@ -71,8 +102,8 @@ $(function () {
             </h3>
         </div>
 </div>
-</div> -->
-<div class="breadcrumbs-sub">
+</div>
+<!-- <div class="breadcrumbs-sub">
 <div class="container">   
 <ul class="breadcrumbs-custom-path">
     <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
@@ -80,17 +111,18 @@ $(function () {
         Login</li>
 </ul>
 </div>
-</div>
+</div> -->
     </div>
 </section>
 <!-- breadcrumbs //-->
-<section class="w3l-contact-info-main" id="contact">
+<section class="w3l-contact-info-main" id="contact" style="align-self: center;">
     <div class="contact-sec	">
         <div class="container">
 
             <div class="d-grid contact-view">
                 
                 <div class="map-content-9 mt-lg-0 mt-4">
+                  <h3 style="color: #6f42c1; font-weight: 900; margin-bottom: 2rem !important">Login your account</h3>
                     <form method="post">
                         <div>
                             <input type="text" class="form-control" name="emailcont" required="true" placeholder="Registered Email or Contact Number" required="true">
@@ -112,7 +144,7 @@ $(function () {
    
     </div></div>
 </section>
-<?php include_once('includes/footer.php');?>
+<!-- <?php include_once('includes/footer.php');?> -->
 <!-- move top -->
 <button onclick="topFunction()" id="movetop" title="Go to top">
 	<span class="fa fa-long-arrow-up"></span>

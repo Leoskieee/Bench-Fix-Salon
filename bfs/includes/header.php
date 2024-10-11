@@ -94,10 +94,10 @@
                         <a class="nav-link" href="admin/index.php">Admin</a>
                     </li> -->
                      <li class="nav-item">
-                        <a class="nav-link" href="signup.php" target="_blank">Signup</a>
+                        <a class="nav-link" href="signup.php">Signup</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php" target="_blank">Login</a>
+                        <a class="nav-link" href="login.php">Login</a>
                     </li><?php }?>
                     
                 </ul>
