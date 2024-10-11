@@ -47,6 +47,7 @@ if(isset($_POST['login']))
         width: 100%;
         min-height: 100vh;
         display: flex;
+        padding-block-start: 4rem;
         flex-direction: row-reverse;
       }
       .user-form > * {
@@ -75,7 +76,10 @@ if(isset($_POST['login']))
     </style>
   </head>
   <body id="home" class="user-form">
-<?php // include_once('includes/header.php');?>
+    <nav style="position: absolute; top: 0;">
+      <?php include_once('includes/header.php');?>
+
+    </nav>
 
 <script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
 <!--bootstrap working-->

@@ -50,6 +50,7 @@ echo "<script>alert('This email or Contact Number already associated with anothe
         width: 100%;
         min-height: 100vh;
         display: flex;
+        padding-block-start: 4rem;
         flex-direction: row-reverse;
       }
       .user-form > * {
@@ -88,7 +89,10 @@ echo "<script>alert('This email or Contact Number already associated with anothe
     </style>
   </head>
   <body id="home" class="user-form">
-<?php // include_once('includes/header.php');?>
+    <nav style="position: absolute; top: 0">
+
+    <?php include_once('includes/header.php');?>
+    </nav>
 
 <script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
 <!--bootstrap working-->
@@ -142,6 +146,16 @@ return true;
         <div class="container">
 
             <div class="d-grid contact-view">
+
+            <!-- <div class="breadcrumbs-sub">
+              <div class="container">   
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
+                    <li class="active ">
+                        Signup</li>
+                </ul>
+              </div>
+              </div> -->
                 
                 <div class="map-content-9 mt-lg-0 mt-4">
                     <h3 style="color: #6f42c1; font-weight: 900;">Register with us!</h3>

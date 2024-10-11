@@ -106,6 +106,11 @@ while ($row=mysqli_fetch_array($ret)) {
     <th>Appointment Time</th>
     <td><?php  echo $row['AptTime'];?></td>
   </tr>
+
+  <!-- <tr>
+    <th>Service</th>
+    <td><?php  echo $row['Service'];?></td>
+  </tr> -->
   
   
   <tr>

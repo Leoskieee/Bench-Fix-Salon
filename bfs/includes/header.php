@@ -59,7 +59,7 @@
 
 </style>
 
-<section class=" w3l-header-4 header-sticky">
+<section class=" w3l-header-4 header-sticky" style="position: a">
     <header class="absolute-top">
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
