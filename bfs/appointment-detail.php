@@ -75,7 +75,7 @@ $(function () {
                    <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment Details</h4>
                         <?php
 $cid=$_GET['aptnumber'];
-$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.AptNumber='$cid'");
+$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Service, tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.AptNumber='$cid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -106,6 +106,11 @@ while ($row=mysqli_fetch_array($ret)) {
 <tr>
     <th>Appointment Time</th>
     <td><?php  echo $row['AptTime'];?></td>
+  </tr>
+
+  <tr>
+    <th>Service</th>
+    <td><?php  echo $row['Service'];?></td>
   </tr>
   
   
