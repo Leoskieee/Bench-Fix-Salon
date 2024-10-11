@@ -64,7 +64,7 @@
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <h1><a class="navbar-brand" href="index.php"> <!--<span class="fa fa-line-chart" aria-hidden="true"></span> -->
-            BFS
+            Bench Fix Salon
             </a></h1>
             <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse"
                 data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -94,10 +94,10 @@
                         <a class="nav-link" href="admin/index.php">Admin</a>
                     </li> -->
                      <li class="nav-item">
-                        <a class="nav-link" href="signup.php" target="_blank">Signup</a>
+                        <a class="nav-link" href="signup.php">Signup</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php" target="_blank">Login</a>
+                        <a class="nav-link" href="login.php">Login</a>
                     </li><?php }?>
                     
                 </ul>

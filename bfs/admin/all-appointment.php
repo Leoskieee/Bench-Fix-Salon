@@ -75,7 +75,8 @@ echo "<script>window.location.href='all-appointment.php'</script>";
 							<th>Action</th> </tr> </thead> 
 							<tbody>
 							<?php
-							$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID");
+							// $ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID");
+							$ret=mysqli_query($con,"SELECT tbluser.FirstName, tbluser.LastName, tbluser.Email, tbluser.MobileNumber, tblbook.ID as bid, tblbook.AptNumber, tblbook.AptDate, tblbook.AptTime, tblbook.Message, tblbook.BookingDate, tblbook.Status FROM tblbook JOIN tbluser ON tbluser.ID=tblbook.UserID ORDER BY tblbook.BookingDate DESC, tblbook.ID DESC");
 							$cnt=1;
 							while ($row=mysqli_fetch_array($ret)) {
 
