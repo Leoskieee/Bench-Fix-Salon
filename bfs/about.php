@@ -7,7 +7,7 @@ include('includes/dbconnection.php');
 <html lang="en">
   <head>
     
-    <title>Bench Fix Salon | About us Page</title>
+    <title>Win Salon | About us Page</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">

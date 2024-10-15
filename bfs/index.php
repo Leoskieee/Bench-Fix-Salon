@@ -8,7 +8,7 @@ include('includes/dbconnection.php');
 <html lang="en">
   <head>
    
-    <title>Bench Fix Salon | Home Page</title>
+    <title>Win Salon | Home Page</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -41,8 +41,8 @@ $(function () {
       <div class="container">
         <div class="banner-text">
           <h4>Creative Styling</h4>
-          <h3>bench fix salon<br>
-            fashion for woman</h3>
+          <h3>win salon<br>
+            fashion for all</h3>
 
             <a href="book-appointment.php" class="btn logo-button top-margin">Get An Appointment</a>
         </div>
