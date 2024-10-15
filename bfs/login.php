@@ -35,7 +35,7 @@ if(isset($_POST['login']))
   <head>
  
 
-    <title>Bench Fix Salon | Login</title>
+    <title>Win Salon | Login</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">

@@ -34,7 +34,7 @@ echo "<script>alert('Password successfully changed');</script>";
   <head>
  
 
-    <title>Bench Fix Salon | Forgot Password Page</title>
+    <title>Win Salon | Forgot Password Page</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">

@@ -32,7 +32,7 @@ echo '<script>alert("Your current password is wrong.")</script>';
   <head>
  
 
-    <title>Bench Fix Salon | Signup Page</title>
+    <title>Win Salon | Signup Page</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">

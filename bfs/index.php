@@ -116,29 +116,32 @@ $(function () {
                     <img src="assets/images/b1.jpg" alt="product" class="img-responsive ">
                 </div>
                 <div class="col-lg-6 about-right-faq align-self">
-                    <h3 class="title-big"><a href="about.html">Clean and Recommended Hair Salon</a></h3>
-                    <p class="mt-3 para"> Their array of beauty parlour services include haircuts, hair spas, colouring, texturing, styling, waxing, pedicures, manicures, threading, body spa, natural facials and more.</p>
-                        <div class="hair-cut">
-                            <div >
-                    <ul class="w3l-right-book">
-                        <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Senior Stylist</a></li>
-                        <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Clean & Fix</a></li>
-                        <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Wavy Curtains Hairstyle</a></li>
-                        <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Undercut Fade guys Haircuts</a></li>
-                        <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Taper Haircut + Brushed Up</a></li>
-                    </ul>
-                </div>
-                    <div  class="image-right">
-                        <ul class="w3l-right-book">
-                            <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Back Massage</a></li>
-                            <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Hair Treatment</a></li>
-                            <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Face Massage</a></li>
-                            <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Skin Care</a></li>
-                            <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Body Therapies</a></li>
-                        </ul>
-                </div>
-            </div>
-        </div>
+                  <h3 class="title-big"><a href="about.html">Your Go-To Salon for Premium Hair and Beauty Care</a></h3>
+                  <p class="mt-3 para">We offer a wide range of professional services, including haircuts, hair treatments, straightening, coloring, manicures, foot spa, scalp treatments, and more. Our goal is to leave you feeling confident and beautiful after every visit.</p>
+                  
+                  <div class="hair-cut">
+                      <div>
+                          <ul class="w3l-right-book">
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Hair Botox Treatment</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Haircut & Styling</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Cellophane Shine Treatment</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Hair Rebonding</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Blow-Dry & Volume Styling</a></li>
+                          </ul>
+                      </div>
+                      
+                      <div class="image-right">
+                          <ul class="w3l-right-book">
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Foot Spa</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Scalp Treatment</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Hair Extensions</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Manicure</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Hair Straightening</a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+
 </section>
 <?php include_once('includes/footer.php');?>
 <!-- move top -->
