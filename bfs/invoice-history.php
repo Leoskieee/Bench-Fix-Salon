@@ -14,7 +14,7 @@ if (strlen($_SESSION['bpmsuid']==0)) {
   <head>
  
 
-    <title>Bench Fix Salon | Invoice History</title>
+    <title>Win Salon | Invoice History</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">

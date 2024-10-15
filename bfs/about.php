@@ -58,50 +58,43 @@ $(function () {
     <div class="content-with-photo4-block ">
         <div class="container">
             <div class="cwp4-two row">
-            <div class="cwp4-image col-xl-6">
-                <img src="assets/images/b2.jpg" alt="product" class="img-responsive about-me">
-            </div>
-                <div class="cwp4-text col-xl-6 ">
+                <div class="cwp4-image col-xl-6">
+                    <img src="assets/images/b2.jpg" alt="product" class="img-responsive about-me">
+                </div>
+                <div class="cwp4-text col-xl-6">
                     <div class="posivtion-grid">
-                    <h3 class="">Beauty and success starts here</h3>
-                    <div class="hair-two-colums">
-                        <div class="hair-left">
-<h5>
-    Waxing</h5>
-</div>
-                        <div class="hair-left">
-                            <h5>Facial</h5>
-                        </div>
+                        <h3 class="">Transform Your Look, Elevate Your Confidence</h3>
+                        <div class="hair-two-colums">
                             <div class="hair-left">
-                                                        <h5>Hair makeup</h5>
-
-                                                    </div>
-                                                                                <div class="hair-left">
-                                                                                    <h5>Massage</h5>
-                                    
-                                                                                </div>
-                                                                                 <div class="hair-left">
-                                                                                    <h5>Menicure</h5>
-                                                                                </div>
-
-   <div class="hair-left">
-                                                                                    <h5>Pedicure</h5>
-                                                                                </div>
-                                                                                   <div class="hair-left">
-                                                                                    <h5>Hair Cut</h5>
-                                                                                </div>
-
-                                                                                   <div class="hair-left">
-                                                                                    <h5>Body Spa</h5>
-                                                                                </div>
-
-                    
+                                <h5>Hair Botox</h5>
+                            </div>
+                            <div class="hair-left">
+                                <h5>Rebonding</h5>
+                            </div>
+                            <div class="hair-left">
+                                <h5>Cellophane Shine</h5>
+                            </div>
+                            <div class="hair-left">
+                                <h5>Scalp Treatment</h5>
+                            </div>
+                            <div class="hair-left">
+                                <h5>Manicure</h5>
+                            </div>
+                            <div class="hair-left">
+                                <h5>Pedicure</h5>
+                            </div>
+                            <div class="hair-left">
+                                <h5>Haircut & Styling</h5>
+                            </div>
+                            <div class="hair-left">
+                                <h5>Foot Spa</h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
-</div>
 </section>
 
 <section class="w3l-recent-work">

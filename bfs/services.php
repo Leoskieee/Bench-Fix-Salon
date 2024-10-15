@@ -9,7 +9,7 @@ include('includes/dbconnection.php');
   <head>
     
 
-    <title>Bench Fix Salon | service Page </title>
+    <title>Win Salon | Services Page </title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -68,8 +68,9 @@ $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
-                <div class="col-lg-4 col-md-6 col-sm-6 propClone">
-                 <img src="admin/images/<?php echo $row['Image']?>" alt="product" height="200" width="400" class="img-responsive about-me">
+                <div class="col-lg-4 col-md-6 col-sm-6 propClone" style="margin: 0; margin-block-end: 2rem;">
+                 <!-- <img src="admin/images/<?php echo $row['product_image']?>" alt="product" height="200" width="400" class="img-responsive about-me"> -->
+                  <img src="admin/images/images.jpg" alt="product" height="300" width="400" class="img-responsive about-me" style="object-fit: cover;">
                     <div class="about-grids ">
                         <hr>
                         <h5 class="para"><?php  echo $row['ServiceName'];?></h5>

@@ -1,20 +1,15 @@
-<?php 
+
+<?php
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsuid']==0)) {
-  header('location:logout.php');
-  } else{
-
-
-
   ?>
 <!doctype html>
 <html lang="en">
   <head>
- 
+    
 
-    <title>Win Salon | Thank You page</title>
+    <title>Win Salon | Products Page </title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -37,17 +32,15 @@ $(function () {
   })
 });
 </script>
-
 <!-- disable body scroll which navbar is in active -->
 
 <!-- breadcrumbs -->
 <section class="w3l-inner-banner-main">
-    <div class="about-inner contact ">
+    <div class="about-inner services ">
         <div class="container">   
             <div class="main-titles-head text-center">
             <h3 class="header-name ">
                 
-Appointment Confirmation
             </h3>
         </div>
 </div>
@@ -56,28 +49,46 @@ Appointment Confirmation
 <div class="container">   
 <ul class="breadcrumbs-custom-path">
     <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
-    <li class="active ">
-        Thank You</li>
+    <li class="active ">Products</li>
 </ul>
 </div>
 </div>
     </div>
 </section>
 <!-- breadcrumbs //-->
-<section class="w3l-contact-info-main" id="contact">
-    <div class="contact-sec	">
+<section class="w3l-recent-work-hobbies" > 
+    <div class="recent-work ">
         <div class="container">
-
-            <div>
+            <div class="row about-about">
+                <?php
                 
- 
-                    <h4 class="w3ls_head">Thank you for applying. Your Appointment no is <?php echo $_SESSION['aptno'];?> </h4>
-                    
-       
+
+$ret=mysqli_query($con,"select * from tblproducts");
+$cnt=1;
+while ($row=mysqli_fetch_array($ret)) {
+
+?>
+                <div class="col-lg-4 col-md-6 col-sm-6 propClone" style="margin: 0; margin-block-end: 2rem;">
+                 <!-- <img src="admin/images/<?php echo $row['product_image']?>" alt="product" height="200" width="400" class="img-responsive about-me"> -->
+                  <img src="admin/images/images.jpg" alt="product" height="300" width="400" class="img-responsive about-me" style="object-fit: cover;">
+                 <div class="about-grids ">
+                        <hr>
+                        <h5 class="para"><?php  echo $row['product_name'];?></h5>
+                        <p class="para "><?php  echo $row['product_desc'];?> </p>
+                        <p class="para " style="color: hotpink;"> Cost of Service: ₱<?php  echo $row['product_price'];?> </p>
+                           
+                    </div>
+                </div>
+                <br><?php 
+$cnt=$cnt+1;
+}?>
+            
+            </div>
+        </div>
     </div>
-   
-    </div></div>
 </section>
+
+
 <?php include_once('includes/footer.php');?>
 <!-- move top -->
 <button onclick="topFunction()" id="movetop" title="Go to top">
@@ -106,4 +117,4 @@ Appointment Confirmation
 <!-- /move top -->
 </body>
 
-</html><?php } ?>
+</html>

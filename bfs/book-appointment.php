@@ -43,7 +43,7 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Bench Fix Salon | Appointment Page</title>
+    <title>Win Salon | Appointment Page</title>
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">

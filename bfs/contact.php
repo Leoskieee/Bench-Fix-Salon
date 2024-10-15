@@ -30,7 +30,7 @@ echo "<script>window.location.href ='contact.php'</script>";
   <head>
  
 
-    <title>Bench Fix Salon | Contact us Page</title>
+    <title>Win Salon | Contact us Page</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">

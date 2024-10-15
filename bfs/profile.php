@@ -32,7 +32,7 @@ echo '<script>window.location.href=profile.php</script>';
   <head>
  
 
-    <title>Bench Fix Salon | Signup Page</title>
+    <title>Win Salon | Signup Page</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">

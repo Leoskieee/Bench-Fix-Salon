@@ -13,10 +13,10 @@ while ($row=mysqli_fetch_array($ret)) {
 
 ?>
               <li>
-                <span class="fa fa-map-marker"></span> <p><?php  echo $row[''];?>Franco Sr, Taguig City</p>
+                <span class="fa fa-map-marker"></span> <p><?php  echo $row[''];?>Blk 3 Lot 1 Franco Sr, P1-A New Lower Bicutan Taguig City</p>
               </li>
-              <li><span class="fa fa-phone"></span><a href="tel:+7-800-999-800">+63 <?php  echo $row[''];?></a></li>
-              <li><span class="fa fa-envelope-open-o"></span><a href="mailto:parlour@mail.com" class="mail">
+              <li><span class="fa fa-phone"></span><a href="tel:09503643741">+63<?php echo $row['MobileNumber'];?></a></li>
+              <li><span class="fa fa-envelope-open-o"></span><a href="mailto:edwinpmagdangan@yahoo.com" class="mail">
 
                   <?php  echo $row['Email'];?></a></li><?php } ?>
             </ul>
@@ -27,7 +27,8 @@ while ($row=mysqli_fetch_array($ret)) {
               <h6 class="footer-title-29">Useful Links</h6>
               <li><a href="index.php">Home</a></li>
               <li><a href="about.php">About</a></li>
-              <li><a href="services.php"> Services</a></li>
+              <li><a href="products.php">Products</a></li>
+              <li><a href="services.php">Services</a></li>
               <li><a href="contact.php">Contact us</a></li>
             </ul>
           </div>
