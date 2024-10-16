@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2024 at 04:33 PM
+-- Generation Time: Oct 16, 2024 at 04:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `tbladmin` (
 --
 
 INSERT INTO `tbladmin` (`ID`, `AdminName`, `UserName`, `MobileNumber`, `Email`, `Password`, `AdminRegdate`) VALUES
-(1, 'Admin', 'admin', 7898799798, 'tester1@gmail.com', '202cb962ac59075b964b07152d234b70', '2024-05-25 06:21:50');
+(1, 'Admin', 'admin', 7898799798, 'tester1@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-05-25 06:21:50');
 
 -- --------------------------------------------------------
 
@@ -69,12 +69,12 @@ CREATE TABLE `tblbook` (
 --
 
 INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `Service`, `Message`, `BookingDate`, `Remark`, `Status`, `RemarkDate`) VALUES
-(2, 7, 767068476, '2024-05-14', '09:00:00', '', 'fghfshdgfahgrfgh', '2024-05-12 18:30:00', 'Sorry your appointment has been cancelled', 'Rejected', '2024-05-13 06:14:39'),
-(4, 10, 931783426, '2024-05-18', '15:40:00', '', 'NA', '2024-05-15 05:04:13', NULL, NULL, NULL),
-(5, 10, 284544154, '2024-05-18', '15:40:00', '', 'NA', '2024-05-15 05:04:13', NULL, NULL, NULL),
-(6, 10, 494039785, '2024-05-31', '14:47:00', '', 'NA', '2024-05-15 05:13:24', NULL, NULL, NULL),
-(8, 10, 891247645, '2024-05-28', '20:14:00', '', 'nA', '2024-05-28 08:43:55', 'Your booking is confirmed.', 'Selected', '2024-05-28 08:51:22'),
-(9, 11, 985654240, '2024-05-29', '13:10:00', '', 'NA', '2024-05-29 07:34:47', 'Your appointment is confirmed', 'Selected', '2024-05-29 07:35:36'),
+(2, 7, 767068476, '2022-05-14', '09:00:00', '', 'fghfshdgfahgrfgh', '2022-05-12 18:30:00', 'Sorry your appointment has been cancelled', 'Rejected', '2022-05-13 06:14:39'),
+(4, 10, 931783426, '2022-05-18', '15:40:00', '', 'NA', '2022-05-15 05:04:13', NULL, NULL, NULL),
+(5, 10, 284544154, '2022-05-18', '15:40:00', '', 'NA', '2022-05-15 05:04:13', NULL, NULL, NULL),
+(6, 10, 494039785, '2022-05-31', '14:47:00', '', 'NA', '2022-05-15 05:13:24', NULL, NULL, NULL),
+(8, 10, 891247645, '2022-05-28', '20:14:00', '', 'nA', '2022-05-28 08:43:55', 'Your booking is confirmed.', 'Selected', '2022-05-28 08:51:22'),
+(9, 11, 985654240, '2022-05-29', '13:10:00', '', 'NA', '2022-05-29 07:34:47', 'Your appointment is confirmed', 'Selected', '2022-05-29 07:35:36'),
 (10, 13, 877052607, '2024-05-18', '15:05:00', '', 'Hello?', '2024-05-17 06:05:46', 'Okay see you !!!\r\n\r\nThank you for trust in salon.', 'Selected', '2024-05-17 06:08:06'),
 (11, 14, 876388443, '2024-05-22', '18:00:00', '', 'Check!', '2024-05-21 10:54:56', '...', 'Selected', '2024-05-21 10:57:59'),
 (12, 16, 923291897, '2024-10-10', '03:20:00', '', 'wdawd', '2024-10-03 07:20:48', NULL, NULL, NULL),
@@ -103,8 +103,8 @@ CREATE TABLE `tblcontact` (
 --
 
 INSERT INTO `tblcontact` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`) VALUES
-(5, 'Kajal', 'Sharma', 9879878798, 'kajal@gmail.com', 'guhgjhg', '2024-05-10 08:43:18', 1),
-(6, 'Anuj', 'Kumar', 1234567890, 'ak@gmail.com', 'Need booking for marriage', '2024-06-01 01:05:47', 1),
+(5, 'Kajal', 'Sharma', 9879878798, 'kajal@gmail.com', 'guhgjhg', '2022-05-10 08:43:18', 1),
+(6, 'Anuj', 'Kumar', 1234567890, 'ak@gmail.com', 'Need booking for marriage', '2022-06-01 01:05:47', 1),
 (7, 'asd', 'asdasd', 523734, 'das@gmail.com', 'this is a message', '2024-05-14 08:30:19', 1),
 (8, 'Leonard', 'Rosales', 9081685149, 'leonardrosales360@gmail.com', 'How to appointment?', '2024-05-17 06:05:10', 1);
 
@@ -127,20 +127,20 @@ CREATE TABLE `tblinvoice` (
 --
 
 INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate`) VALUES
-(4, 7, 4, 138889283, '2024-05-13 11:42:21'),
-(5, 7, 9, 138889283, '2024-05-13 11:42:21'),
-(6, 7, 16, 138889283, '2024-05-13 11:42:21'),
-(7, 8, 3, 555850701, '2024-05-13 11:42:51'),
-(8, 8, 6, 555850701, '2024-05-13 11:42:51'),
-(9, 8, 9, 555850701, '2024-05-13 11:42:51'),
-(10, 8, 11, 555850701, '2024-05-13 11:42:51'),
-(13, 10, 1, 330026346, '2024-05-28 08:51:42'),
-(14, 10, 2, 330026346, '2024-05-28 08:51:42'),
-(15, 11, 2, 379060040, '2024-05-29 07:36:17'),
-(16, 11, 5, 379060040, '2024-05-29 07:36:18'),
-(17, 11, 6, 379060040, '2024-05-29 07:36:18'),
-(18, 11, 12, 379060040, '2024-05-29 07:36:18'),
-(19, 11, 3, 460087279, '2024-06-01 01:03:58'),
+(4, 7, 4, 138889283, '2022-05-13 11:42:21'),
+(5, 7, 9, 138889283, '2022-05-13 11:42:21'),
+(6, 7, 16, 138889283, '2022-05-13 11:42:21'),
+(7, 8, 3, 555850701, '2022-05-13 11:42:51'),
+(8, 8, 6, 555850701, '2022-05-13 11:42:51'),
+(9, 8, 9, 555850701, '2022-05-13 11:42:51'),
+(10, 8, 11, 555850701, '2022-05-13 11:42:51'),
+(13, 10, 1, 330026346, '2022-05-28 08:51:42'),
+(14, 10, 2, 330026346, '2022-05-28 08:51:42'),
+(15, 11, 2, 379060040, '2022-05-29 07:36:17'),
+(16, 11, 5, 379060040, '2022-05-29 07:36:18'),
+(17, 11, 6, 379060040, '2022-05-29 07:36:18'),
+(18, 11, 12, 379060040, '2022-05-29 07:36:18'),
+(19, 11, 3, 460087279, '2022-06-01 01:03:58'),
 (20, 13, 1, 873748277, '2024-05-17 06:11:08'),
 (21, 13, 2, 873748277, '2024-05-17 06:11:08');
 
@@ -188,15 +188,15 @@ CREATE TABLE `tblproducts` (
 --
 
 INSERT INTO `tblproducts` (`id`, `product_name`, `product_desc`, `product_price`, `product_image`) VALUES
-(1, 'Hair Wax', 'Hair wax is a styling product used to create and hold a wide range of hairstyles.', 50, NULL),
-(2, 'Rebond Comb', 'A rebond comb is a wide-toothed comb often used during hair rebonding treatments.', 50, NULL),
-(3, 'Styling Gel', 'Hair gel is a clear or colored product that provides a strong hold and shiny finish for hair. It’s often used for slick, sleek styles or spiked looks.', 35, NULL),
-(4, 'Hair Color', 'Hair color is used to dye hair, either permanently or semi-permanently, in a variety of shades.', 80, NULL),
-(5, 'Conditioner', 'Hydrates and smooths hair after shampooing. Available in various formulas for different hair needs.', 30, NULL),
-(6, 'Hairspray', 'Spray used to set and hold hairstyles in place for longer durations.', 35, NULL),
-(7, 'Dry Shampoo', 'Powder or spray used to clean hair without water by absorbing excess oil.', 30, NULL),
-(8, 'Heat Protectant', 'Spray or serum applied before heat styling to protect hair from damage.', 35, NULL),
-(9, 'Hair Mask', 'Intensive conditioning treatment applied to repair and nourish hair.', 80, NULL);
+(1, 'Hair Wax', 'Hair wax is a styling product used to create and hold a wide range of hairstyles.', 50, 'hair-wax.jpg'),
+(2, 'Rebond Comb', 'A rebond comb is a wide-toothed comb often used during hair rebonding treatments.', 50, 'rebond-comb.jpg'),
+(3, 'Styling Gel', 'Hair gel is a clear or colored product that provides a strong hold and shiny finish for hair. It’s often used for slick, sleek styles or spiked looks.', 35, 'styling-gel.jpg'),
+(4, 'Hair Color', 'Hair color is used to dye hair, either permanently or semi-permanently, in a variety of shades.', 80, 'hair-color.jpg'),
+(5, 'Conditioner', 'Hydrates and smooths hair after shampooing. Available in various formulas for different hair needs.', 30, 'conditioner.jpg'),
+(6, 'Hairspray', 'Spray used to set and hold hairstyles in place for longer durations.', 35, 'hairspray.jpg'),
+(7, 'Dry Shampoo', 'Powder or spray used to clean hair without water by absorbing excess oil.', 30, 'dry-shampoo.jpg'),
+(8, 'Heat Protectant', 'Spray or serum applied before heat styling to protect hair from damage.', 35, 'heat-protectant.jpg'),
+(9, 'Hair Mask', 'Intensive conditioning treatment applied to repair and nourish hair.', 80, 'hair-mask.jpg');
 
 -- --------------------------------------------------------
 
@@ -217,18 +217,18 @@ CREATE TABLE `tblservices` (
 --
 
 INSERT INTO `tblservices` (`ID`, `ServiceName`, `ServiceDescription`, `Cost`, `Image`) VALUES
-(1, 'Hair Botox', 'A deep conditioning treatment that helps repair damaged hair, making it smoother, shinier, and healthier. It reduces frizz and adds softness to your hair.', 1500, NULL),
-(2, 'Haircut', 'A professional trim or style for your hair, tailored to your preference.', 80, NULL),
-(3, 'Cellophane', 'A hair treatment that adds shine and enhances the color of your hair, leaving it looking vibrant and glossy.', 300, NULL),
-(4, 'Hair Spa', 'A nourishing treatment that deeply moisturizes your hair and scalp, promoting healthier and shinier hair.', 300, NULL),
-(5, 'Rebond', 'A chemical treatment that straightens curly or wavy hair, leaving it smooth and sleek.', 1000, NULL),
-(6, 'Foot Spa', 'A relaxing treatment for your feet that includes soaking, exfoliation, and moisturizing to soften and refresh your skin.', 300, NULL),
-(7, 'Manicure', 'A beauty treatment for your hands and nails that includes nail shaping, cuticle care, and optional polish application.', 70, NULL),
-(8, 'Blow-Dry', 'Shampoo, blow-dry, and styling. Often leaves hair smooth and voluminous.', 120, NULL),
-(9, 'Hair Extensions', 'Adding length or volume with synthetic or natural hair extensions. Can be applied through different methods (clip-in, tape-in, sew-in).', 600, NULL),
-(10, 'Scalp Treatment', 'Treatments to improve scalp health, reduce dandruff, or stimulate hair growth. Often involves massaging and specialized products.', 150, NULL),
-(11, 'Straightening', 'Temporary or permanent straightening using a flat iron or chemical treatments like Japanese straightening or relaxers.', 300, NULL),
-(12, 'Perm', 'Chemical treatment to create curls or waves that last for months.', 250, NULL);
+(1, 'Hair Botox', 'A deep conditioning treatment that helps repair damaged hair, making it smoother, shinier, and healthier. It reduces frizz and adds softness to your hair.', 1500, 'hair-botox.jpg'),
+(2, 'Haircut', 'A professional trim or style for your hair, tailored to your preference.', 80, 'haircut.jpg'),
+(3, 'Cellophane', 'A hair treatment that adds shine and enhances the color of your hair, leaving it looking vibrant and glossy.', 300, 'cellophane.jpg'),
+(4, 'Hair Spa', 'A nourishing treatment that deeply moisturizes your hair and scalp, promoting healthier and shinier hair.', 300, 'hair-spa.jpg'),
+(5, 'Rebond', 'A chemical treatment that straightens curly or wavy hair, leaving it smooth and sleek.', 1000, 'rebond.jpg'),
+(6, 'Foot Spa', 'A relaxing treatment for your feet that includes soaking, exfoliation, and moisturizing to soften and refresh your skin.', 300, 'foot-spa.jpg'),
+(7, 'Manicure', 'A beauty treatment for your hands and nails that includes nail shaping, cuticle care, and optional polish application.', 70, 'manicure.jpg'),
+(8, 'Blow-Dry', 'Shampoo, blow-dry, and styling. Often leaves hair smooth and voluminous.', 120, 'blow-dry.jpg'),
+(9, 'Hair Extensions', 'Adding length or volume with synthetic or natural hair extensions. Can be applied through different methods (clip-in, tape-in, sew-in).', 600, 'hair-extension.jpg'),
+(10, 'Scalp Treatment', 'Treatments to improve scalp health, reduce dandruff, or stimulate hair growth. Often involves massaging and specialized products.', 150, 'scalp-treatment.jpg'),
+(11, 'Straightening', 'Temporary or permanent straightening using a flat iron or chemical treatments like Japanese straightening or relaxers.', 300, 'straightening.jpg'),
+(12, 'Perm', 'Chemical treatment to create curls or waves that last for months.', 250, 'perm.jpg');
 
 -- --------------------------------------------------------
 
@@ -256,10 +256,10 @@ INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `
 (4, 'Test Sample', NULL, 8797977779, 'sample@gmail.com', '202cb962ac59075b964b07152d234b70', '2020-04-08 05:51:06'),
 (5, 'Anuj  kumar', NULL, 1236547890, 'test@test.com', 'f925916e2754e5e03f75dd58a5733251', '2020-05-07 08:52:34'),
 (6, 'ghhg', NULL, 8888888888, 'c@gmail.com', '202cb962ac59075b964b07152d234b70', '2021-12-14 05:27:32'),
-(7, 'Tina', 'Khan', 9789797987, 'tina@gmail.com', '202cb962ac59075b964b07152d234b70', '2024-05-11 09:21:46'),
-(8, 'Hima', 'Sharma', 8979798789, 'hima@gmail.com', '202cb962ac59075b964b07152d234b70', '2024-05-11 09:23:16'),
-(10, 'Anuj', 'Kumar', 1425362514, 'ak@gmail.com', 'f925916e2754e5e03f75dd58a5733251', '2024-05-15 05:03:32'),
-(11, 'John', 'Doe', 1452632541, 'johndoe@gmail.com', 'f925916e2754e5e03f75dd58a5733251', '2024-05-29 07:33:58'),
+(7, 'Tina', 'Khan', 9789797987, 'tina@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-05-11 09:21:46'),
+(8, 'Hima', 'Sharma', 8979798789, 'hima@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-05-11 09:23:16'),
+(10, 'Anuj', 'Kumar', 1425362514, 'ak@gmail.com', 'f925916e2754e5e03f75dd58a5733251', '2022-05-15 05:03:32'),
+(11, 'John', 'Doe', 1452632541, 'johndoe@gmail.com', 'f925916e2754e5e03f75dd58a5733251', '2022-05-29 07:33:58'),
 (12, 'juan', 'pablo', 964534231, 'jp@gmail.com', '32250170a0dca92d53ec9624f336ca24', '2024-05-14 07:34:12'),
 (13, 'Leo', 'Nard', 9081685149, 'leonardrosales360@gmail.com', '9697ad4e728e0cb2758df02341aff2c6', '2024-05-14 10:15:28'),
 (14, 'jeff', 'masagca', 9949237820, 'jepoymasagca21@gmail.com', '908df52be49d76717b84e45d4a5d7fe7', '2024-05-21 10:49:54'),
