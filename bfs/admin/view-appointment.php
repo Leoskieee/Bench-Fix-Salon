@@ -2,6 +2,11 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
     if (strlen($_SESSION['bpmsaid']==0)) {
   header('location:logout.php');
   } else{
@@ -12,17 +17,67 @@ if(isset($_POST['submit']))
       $remark=$_POST['remark'];
       $status=$_POST['status'];
    $query=mysqli_query($con, "update  tblbook set Remark='$remark',Status='$status' where ID='$cid'");
-    if ($query) {
     
-    echo '<script>alert("All remark has been updated.")</script>';
-    echo "<script type='text/javascript'> document.location ='all-appointment.php'; </script>";
-  }
-  else
-    {
-      echo '<script>alert("Something Went Wrong. Please try again")</script>';
+    if ($query) {
+      $qry = mysqli_query($con, "SELECT tbluser.email, tbluser.Firstname, tbluser.Lastname, tblbook.AptNumber 
+      FROM tbluser 
+      JOIN tblbook ON tbluser.ID = tblbook.UserID 
+      WHERE tblbook.ID = '$cid'");    
+      
+    if (!$qry) {
+      echo "<script>alert('Error executing query: " . mysqli_error($con) . "');</script>";
+      exit;
+    }
+
+    $results = mysqli_fetch_array($qry);
+
+    if (!$results) {
+        echo "<script>alert('No data found for appointment ID: $cid');</script>";
+        exit;
+    }
+
+    $UserEmail = $results['email'];
+    $UserName = $results['Firstname'] . ' ' . $results['Lastname'];
+    $aptId = $results['AptNumber'];
+    
+    require __DIR__ . "/../../vendor/autoload.php";
+
+        $mail = new PHPMailer(true);
+
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPAuth = true;
+            $mail->Username = "leonardr009@gmail.com";
+            $mail->Password = "llgp swji majk hqwh";
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+            $mail->Port = 587;
+
+            $mail->setFrom("leonardr009@gmail.com");
+            $mail->addAddress($UserEmail, $UserName);
+
+            $mail->isHTML(true);
+
+            if ($status == "Selected") {
+              $mail->Subject = "Win Salon Appointment Approved";
+              $mail->Body = "Hello $UserName,<br><br>Your appointment request (ID: $aptId) has been approved. Please check your account for details.<br><br>Thanks for choosing Win Salon!";
+            } elseif ($status == "Rejected") {
+                $mail->Subject = "Win Salon Appointment Rejected";
+                $mail->Body = "Hello $UserName,<br><br>We regret to inform you that your appointment request : $aptId : has been rejected. Please check your account for further details.<br><br>Best regards,<br>Win Salon";
+            }
+
+            try {
+              $mail->send();
+              echo '<script>alert("All remark has been updated.");</script>';
+              echo "<script type='text/javascript'> document.location ='all-appointment.php'; </script>";
+          } catch (Exception $e) {
+              echo "<script>alert('Email could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
+          }
+      } else {
+        echo '<script>alert("Something Went Wrong. Please try again.");</script>';
     }
 }
-  ?>
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -70,7 +125,7 @@ if(isset($_POST['submit']))
 				<div class="tables">
 					<h3 class="title1">View Appointment</h3>
 					<div class="table-responsive bs-example widget-shadow">
-						
+
 						<h4>View Appointment:</h4>
 						<?php
 $cid=$_GET['viewid'];

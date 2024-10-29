@@ -3,6 +3,11 @@ session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
 include('includes/check_availability.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 if (strlen($_SESSION['bpmsuid']) == 0) {
     header('location:logout.php');
 } else {
@@ -15,6 +20,11 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
         $service = $_POST['service'];
         $msg = $_POST['message'];
         $aptnumber = mt_rand(100000000, 999999999);
+
+        //get Email
+        $query = mysqli_query($con, "SELECT email FROM tbluser WHERE id = $uid");
+        $result = mysqli_fetch_assoc($query);
+        $Uemail = $result['email'];;
 
         // Check how many appointments exist for the selected date
         $countQuery = mysqli_query($con, "SELECT COUNT(*) as total FROM tblbook WHERE AptDate = '$adate'");
@@ -30,7 +40,34 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
                 $ret = mysqli_query($con, "SELECT AptNumber FROM tblbook WHERE tblbook.UserID='$uid' ORDER BY ID DESC LIMIT 1;");
                 $result = mysqli_fetch_array($ret);
                 $_SESSION['aptno'] = $result['AptNumber'];
-                echo "<script>window.location.href='thank-you.php'</script>";  
+
+                require __DIR__ . "/../vendor/autoload.php";
+
+                $mail = new PHPMailer(true);
+
+                try {
+                    $mail->isSMTP();
+                    $mail->Host = "smtp.gmail.com";
+                    $mail->SMTPAuth = true;
+                    $mail->Username = "leonardr009@gmail.com";
+                    $mail->Password = "llgp swji majk hqwh";
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+                    $mail->Port = 587;
+
+                    $mail->setFrom($Uemail);
+                    $mail->addAddress("leonardr009@gmail.com", "ADMIN");
+
+                    $mail->isHTML(true);
+                    $mail->Subject = "Win Salon Appointment Request";
+                    $aptnumber = $_SESSION['aptno'] = $result['AptNumber'];
+                    $mail->Body = "Win Salon website has recieved new appointment request : $aptnumber : go to website to see details";
+
+                    $mail->send();
+                    echo "<script>window.location.href='thank-you.php'</script>";
+                } catch (Exception $e) {
+                    $availabilityMessage = "Mailer Error: " . $mail->ErrorInfo;
+                }
+
             } else {
                 $availabilityMessage = "Something Went Wrong. Please try again.";
             }
