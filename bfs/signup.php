@@ -2,6 +2,9 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 error_reporting(0);
 
 if(isset($_POST['submit']))
@@ -12,6 +15,9 @@ if(isset($_POST['submit']))
     $email=$_POST['email'];
     $password=md5($_POST['password']);
 
+    $activation_token = bin2hex(random_bytes(16));
+    $activation_token_hash = hash("sha256", $activation_token);
+
     $ret=mysqli_query($con, "select Email from tbluser where Email='$email' || MobileNumber='$contno'");
     $result=mysqli_fetch_array($ret);
     if($result>0){
@@ -19,9 +25,43 @@ if(isset($_POST['submit']))
 echo "<script>alert('This email or Contact Number already associated with another account!.');</script>";
     }
     else{
-    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, Password) value('$fname', '$lname','$contno', '$email', '$password' )");
-    if ($query) {
+    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, Password, account_activation_hash) value('$fname', '$lname','$contno', '$email', '$password', '$activation_token_hash')");
     
+
+    if ($query) {
+      require __DIR__ . "/../vendor/autoload.php";
+
+      $mail = new PHPMailer(true);
+
+      $mail->isSMTP();
+      $mail->Host = "smtp.gmail.com";
+      $mail->SMTPAuth = true;
+      $mail->Username = "leonardr009@gmail.com";
+      $mail->Password = "llgp swji majk hqwh";
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+      $mail->Port = 587;
+
+      $mail->setFrom("leonardr009@gmail.com");
+      $mail->addAddress($email);
+      $baseUrl = "http://localhost/bench-fix-salon/bfs";
+      $activationUrl = $baseUrl . "/includes/email_activation.php?token=$activation_token";
+
+      $mail->isHTML(true);
+      $mail->Subject = "Win Salon Email Verification";
+      $mail->Body = <<<END
+
+      <p>Hello $fname $lname Thank you for signing up! Please click the link below to Verify your account:</p>
+      <p><a href="$activationUrl">Verify your account</a></p>
+
+      END;
+
+    try {
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
+        exit;
+    }
+
     echo "<script>alert('You have successfully registered.');</script>";
   }
   else

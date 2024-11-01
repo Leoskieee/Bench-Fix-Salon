@@ -8,6 +8,7 @@ if(isset($_POST['login']))
   {
     $emailcon=$_POST['emailcont'];
     $password=md5($_POST['password']);
+    $null = null;
 
     $query=mysqli_query($con,"select ID from tbladmin where  UserName='$emailcon' && Password='$password' ");
     $ret=mysqli_fetch_array($query);
@@ -16,7 +17,7 @@ if(isset($_POST['login']))
      header('location:admin/dashboard.php');
     }
     else{
-        $query=mysqli_query($con,"select ID from tbluser where  (Email='$emailcon' || MobileNumber='$emailcon') && Password='$password' ");
+        $query=mysqli_query($con,"select ID from tbluser where  (Email='$emailcon' || MobileNumber='$emailcon' && account_activation_hash = '$null') && Password='$password'");
         $ret=mysqli_fetch_array($query);
         if($ret>0){
             $_SESSION['bpmsuid']=$ret['ID'];
