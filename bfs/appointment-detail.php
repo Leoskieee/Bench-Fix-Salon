@@ -70,7 +70,7 @@ $(function () {
         <div class="container">
 
             <div>
-                <div class="cont-details">
+                <div>
                    <div class="table-content table-responsive cart-table-content m-t-30">
                    <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment Details</h4>
                         <?php
@@ -105,7 +105,8 @@ while ($row=mysqli_fetch_array($ret)) {
  
 <tr>
     <th>Appointment Time</th>
-    <td><?php  echo $row['AptTime'];?></td>
+    <!-- <td><?php  echo $row['AptTime'];?></td> -->
+     <td><?php echo date("g:i A", strtotime($row['AptTime'])); ?></td>
   </tr>
 
   <tr>
@@ -118,19 +119,29 @@ while ($row=mysqli_fetch_array($ret)) {
     <th>Apply Date</th>
     <td><?php  echo $row['BookingDate'];?></td>
   </tr>
+
+  <tr>
+    <th>Notes</th>
+    <td><?php  echo $row['Message'];?></td>
+  </tr>
+
+  <tr>
+    <th>Salon's Message</th>
+    <td><?php  echo $row['Remark'];?></td>
+  </tr>
   
 
 <tr>
     <th>Status</th>
     <td> <?php  
-if($row['Status']=="")
+if(empty($row['Status']))
 {
-  echo "Not Updated Yet";
+  echo "Pending";
 }
 
-if($row['Status']=="Selected")
+if($row['Status']=="Confirmed")
 {
-  echo "Selected";
+  echo $row['Status'];
 }
 
 if($row['Status']=="Rejected")

@@ -84,7 +84,6 @@ echo "<script>alert('This email or Contact Number already associated with anothe
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-
     <style>
       .user-form {
         width: 100%;
@@ -126,7 +125,94 @@ echo "<script>alert('This email or Contact Number already associated with anothe
         padding-inline: 0;
         padding-block: 1rem;
       }
+
+      /* Default styling for larger screens */
+      .field-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .field-group > div {
+        width: 48%; /* You can adjust the width to fit your design */
+        padding-top: 30px;
+      }
+
+      .field-group input {
+        width: 100%;
+      }
+
+      /* Media Queries */
+      @media (max-width: 1200px) {
+        .w3l-contact-info-main .container {
+          padding-inline: 3rem;
+        }
+
+        .map-content-9 h3 {
+          font-size: 1.8rem;
+        }
+
+        .field-group > div {
+          width: 100%; 
+          padding-top: 15px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .w3l-contact-info-main .container {
+          padding-inline: 1.5rem;
+        }
+
+        .twice-two.fl-c {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+
+        .map-content-9 h3 {
+          font-size: 1.5rem;
+          text-align: center;
+        }
+
+        .btn.btn-contact {
+          width: 100%;
+          margin-top: 1rem;
+        }
+
+        .field-group > div {
+          width: 100%; 
+          padding-top: 15px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .user-form {
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          padding-block-start: 0 !important;
+        }
+
+        .w3l-contact-info-main .container {
+          padding-inline: 1rem;
+        }
+
+        .map-content-9 h3 {
+          font-size: 1.2rem;
+        }
+
+        form input,
+        form button {
+          font-size: 1rem;
+        }
+
+        .btn.btn-contact {
+          font-size: 1rem;
+        }
+      }
     </style>
+  
   </head>
   <body id="home" class="user-form">
     <nav style="position: absolute; top: 0">

@@ -47,7 +47,7 @@ $(function () {
    <div class="container">   
     <ul class="breadcrumbs-custom-path">
         <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
-        <li class="active ">About</li>
+        <li class="active ">About Us</li>
     </ul>
 </div>
 </div>
@@ -111,7 +111,7 @@ $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
-		<h5><a href="blog.html"><?php  echo $row['PageTitle'];?></a></h5>
+		<h5><?php  echo $row['PageTitle'];?></h5>
 		<p class="para mt-2"><?php  echo $row['PageDescription'];?></p><?php } ?>
 	</div>
 	

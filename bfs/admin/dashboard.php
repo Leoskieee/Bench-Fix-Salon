@@ -5,6 +5,30 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['bpmsaid']==0)) {
   header('location:logout.php');
   } 
+
+require_once('tcpdf/tcpdf.php'); 
+
+// Function to generate PDF
+if(isset($_POST['generate_pdf'])) {
+    // Create a new PDF document
+    $pdf = new TCPDF();
+    $pdf->AddPage();
+    
+    // Set title and document metadata
+    $pdf->SetTitle('Dashboard Report');
+    $pdf->SetAuthor('BFS Admin');
+    
+    // Set content
+    ob_start();
+    include('dashboard_content.php'); // Place HTML dashboard content in a separate PHP file (e.g., dashboard_content.php)
+    $htmlContent = ob_get_clean();
+    
+    $pdf->writeHTML($htmlContent, true, false, true, false, '');
+    
+    // Output the PDF as a download
+    $pdf->Output('dashboard_report.pdf', 'D');
+    exit;
+}
      ?>
 <!DOCTYPE HTML>
 <html>
@@ -59,11 +83,12 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 		<div id="page-wrapper" class="row calender widget-shadow">
 			<div class="main-page">
 				
-			
+				<a href="dashboard_content.php" class="btn btn-primary" target="_blank">Generate Report</a>
+
 				<div class="row calender widget-shadow">
 					<div class="row-one">
 					<div class="col-md-4 widget">
-						<?php $query1=mysqli_query($con,"Select * from tbluser");
+						<?php $query1=mysqli_query($con,"Select count(*) from tbluser");
 $totalcust=mysqli_num_rows($query1);
 ?>
 						<div class="stats-left ">
@@ -258,6 +283,7 @@ endif;
 				</div>
 						
 					</div>
+					
 				</div>
 				<div class="clearfix"> </div>
 			</div>

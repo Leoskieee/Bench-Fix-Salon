@@ -68,21 +68,33 @@ echo "<script>window.location.href='new-appointment.php'</script>";
 						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th> Appointment Number</th> <th>Name</th><th>Mobile Number</th> <th>Appointment Date</th><th>Appointment Time</th>
 							<th>Status</th><th>Action</th> </tr> </thead> <tbody>
 <?php
-$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.Status is null");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
+$ret = mysqli_query($con, "SELECT tbluser.FirstName, tbluser.LastName, tbluser.Email, tbluser.MobileNumber, tblbook.ID as bid, tblbook.AptNumber, tblbook.AptDate, tblbook.AptTime, tblbook.Message, tblbook.BookingDate, tblbook.Status 
+                           FROM tblbook 
+                           JOIN tbluser ON tbluser.ID = tblbook.UserID 
+                           WHERE tblbook.Status IS NULL 
+                           ORDER BY tblbook.ID DESC");
+$cnt = 1;
+while ($row = mysqli_fetch_array($ret)) {
 ?>
 
-						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['AptNumber'];?></td> <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td><td><?php  echo $row['MobileNumber'];?></td><td><?php  echo $row['AptDate'];?></td> <td><?php  echo $row['AptTime'];?></td><?php if($row['Status']==""){ ?>
+<tr> 
+  <th scope="row"><?php echo $cnt; ?></th> 
+  <td><?php echo $row['AptNumber']; ?></td> 
+  <td><?php echo $row['FirstName'] . ' ' . $row['LastName']; ?></td>
+  <td><?php echo $row['MobileNumber']; ?></td>
+  <td><?php echo $row['AptDate']; ?></td> 
+  <td><?php echo $row['AptTime']; ?></td>
+  <td class="font-w600"><?php echo ($row['Status'] == "") ? "Not Updated Yet" : $row['Status']; ?></td>
+  <td>
+    <a href="view-appointment.php?viewid=<?php echo $row['bid']; ?>" class="btn btn-primary">View</a>
+    <a href="new-appointment.php?delid=<?php echo $row['bid']; ?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+  </td> 
+</tr>
 
-                     <td class="font-w600"><?php echo "Not Updated Yet"; ?></td>
-                     <?php } else { ?>
-                      <td><?php  echo $row['Status'];?></td><?php } ?> 
-                      <td><a href="view-appointment.php?viewid=<?php echo $row['bid'];?>" class="btn btn-primary">View</a>
-<a href="new-appointment.php?delid=<?php echo $row['bid'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td> </tr>   <?php 
-$cnt=$cnt+1;
-}?></tbody> </table> 
+<?php 
+$cnt++;
+} ?>
+</tbody> </table> 
 					</div>
 				</div>
 			</div>

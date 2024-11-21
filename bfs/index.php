@@ -116,27 +116,27 @@ $(function () {
                     <img src="assets/images/b1.jpg" alt="product" class="img-responsive ">
                 </div>
                 <div class="col-lg-6 about-right-faq align-self">
-                  <h3 class="title-big"><a href="about.html">Your Go-To Salon for Premium Hair and Beauty Care</a></h3>
+                  <h3 class="title-big">Your Go-To Salon for Premium Hair and Beauty Care</h3>
                   <p class="mt-3 para">We offer a wide range of professional services, including haircuts, hair treatments, straightening, coloring, manicures, foot spa, scalp treatments, and more. Our goal is to leave you feeling confident and beautiful after every visit.</p>
                   
                   <div class="hair-cut">
                       <div>
                           <ul class="w3l-right-book">
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Hair Botox Treatment</a></li>
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Haircut & Styling</a></li>
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Cellophane Shine Treatment</a></li>
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Hair Rebonding</a></li>
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Blow-Dry & Volume Styling</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Hair Botox Treatment</li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Haircut & Styling</li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Cellophane Shine Treatment</li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Hair Rebonding</li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Blow-Dry & Volume Styling</li>
                           </ul>
                       </div>
                       
                       <div class="image-right">
                           <ul class="w3l-right-book">
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Foot Spa</a></li>
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Scalp Treatment</a></li>
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Hair Extensions</a></li>
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Manicure</a></li>
-                              <li><span class="fa fa-check" aria-hidden="true"></span><a href="about.html">Hair Straightening</a></li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Foot Spa</li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Scalp Treatment</li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Hair Extensions</li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Manicure</li>
+                              <li><span class="fa fa-check" aria-hidden="true"></span>Hair Straightening</li>
                           </ul>
                       </div>
                   </div>
