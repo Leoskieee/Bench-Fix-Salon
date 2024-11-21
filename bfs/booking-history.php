@@ -16,6 +16,10 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 
     <title>Win Salon | Booking History</title>
 
+    <style>
+        
+    </style>
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
@@ -70,17 +74,17 @@ $(function () {
         <div class="container">
 
             <div>
-                <div class="cont-details">
+                <div>
                    <div class="table-content table-responsive cart-table-content m-t-30">
                     <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment History</h4>
                         <table border="2" class="table">
                             <thead class="gray-bg" >
                                 <tr>
                                     <th>#</th>
-                                <th>Appointment Number</th>
+                                <!-- <th>Appointment Number</th> -->
                                 <th>Appointment Date</th>
-                                <th>Appointment Time</th>
-                                <th>Appointment Status</th>
+                                <!-- <th>Appointment Time</th> -->
+                                <!-- <th>Appointment Status</th> -->
                                 <th>Action</th>
                                 </tr>
                             </thead>
@@ -95,16 +99,17 @@ $cnt=1;
               { ?>
                <tr>
     <td><?php echo $cnt;?></td>
-<td><?php echo $row['AptNumber'];?></td>
+<!-- <td><?php echo $row['AptNumber'];?></td> -->
 <td><p> <?php echo $row['AptDate']?> </p></td> 
-<td><?php echo $row['AptTime']?></td> 
-<td><?php $status=$row['Status'];
+<!-- <td><?php echo $row['AptTime']?></td>  -->
+ <!-- <td><?php echo date("g:i A", strtotime($row['AptTime'])); ?></td> -->
+<!-- <td><?php $status=$row['Status'];
 if($status==''){
  echo "Waiting for confirmation";   
 } else{
 echo $status;
 }
-?>  </td>   
+?>  </td>    -->
 
 <td><a href="appointment-detail.php?aptnumber=<?php echo $row['AptNumber'];?>" class="btn btn-primary">View</a></td>       
 </tr><?php $cnt=$cnt+1; } ?>

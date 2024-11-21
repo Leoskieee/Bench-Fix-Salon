@@ -74,7 +74,7 @@ while ($row=mysqli_fetch_array($ret)) {
                         <hr>
                         <h5 class="para"><?php  echo $row['product_name'];?></h5>
                         <p class="para "><?php  echo $row['product_desc'];?> </p>
-                        <p class="para " style="color: hotpink;"> Cost of Service: ₱<?php  echo $row['product_price'];?> </p>
+                        <p class="para " style="color: hotpink;"> Cost of Product: ₱<?php  echo $row['product_price'];?> </p>
                            
                     </div>
                 </div>

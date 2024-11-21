@@ -33,18 +33,7 @@ while ($row=mysqli_fetch_array($ret)) {
             </ul>
           </div>
          
-          <div class="col-lg-4 col-md-6 col-sm-7 footer-list-29 footer-4">
-            <?php
-
-$ret=mysqli_query($con,"select * from tblpage where PageType='aboutus' ");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
-?>
-            <h6 class="footer-title-29"><?php  echo $row['PageTitle'];?> </h6>
-            <p><?php  echo $row['PageDescription'];?></p><?php } ?>
-  
-          </div>
+          
         </div>
       </div>
     </div>

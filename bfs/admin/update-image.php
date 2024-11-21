@@ -21,7 +21,8 @@ echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');
 else
 {
 //rename the image file
-$newimage=md5($image).time().$extension;
+// $newimage=md5($image).time().$extension;
+$newimage = $image;
 // Code for move image into directory
 move_uploaded_file($_FILES["image"]["tmp_name"],"images/".$newimage);
    

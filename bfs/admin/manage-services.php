@@ -36,6 +36,8 @@ echo "<script>window.location.href='manage-services.php'</script>";
 <!--//webfonts--> 
 <!--animate-->
 <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 <script src="js/wow.min.js"></script>
 	<script>
 		 new WOW().init();
@@ -65,7 +67,16 @@ echo "<script>window.location.href='manage-services.php'</script>";
 				
 					<div class="table-responsive bs-example widget-shadow">
 						<h4>Update Services:</h4>
-						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th>Service Name</th> <th>Service Price</th> <th>Creation Date</th><th>Action</th> </tr> </thead> <tbody>
+						<table class="table table-bordered"> <thead> 
+							<tr> 
+								<th>#</th> 
+								<th>Service</th> 
+								<th>Price</th> 
+								<!-- <th>Creation Date</th> -->
+								<th>Action</th> 
+							</tr> 
+							</thead> 
+								<tbody>
 <?php
 $ret=mysqli_query($con,"select *from  tblservices");
 $cnt=1;
@@ -73,9 +84,20 @@ while ($row=mysqli_fetch_array($ret)) {
 
 ?>
 
-						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['ServiceName'];?></td> <td><?php  echo $row['Cost'];?></td><td><?php  echo $row['CreationDate'];?></td> <td>
-						 	<a href="edit-services.php?editid=<?php echo $row['ID'];?>" class="btn btn-primary">Edit</a>
-						 	<a href="manage-services.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+						 <tr> <th scope="row"><?php echo $cnt;?></th> 
+						 <td><?php  echo $row['ServiceName'];?></td> 
+						 <td><?php  echo $row['Cost'];?></td>
+						 <!-- <td><?php  echo $row['CreationDate'];?></td>  -->
+						 <td>
+							<a href="edit-services.php?editid=<?php echo $row['ID'];?>" class="btn btn-primary">
+									<i class="fas fa-edit"></i> <!-- Font Awesome Edit Icon -->
+							</a>
+							<a href="manage-services.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">
+									<i class="fas fa-trash"></i> <!-- Font Awesome Trash Icon -->
+							</a>
+
+						 	<!-- <a href="edit-services.php?editid=<?php echo $row['ID'];?>" class="btn btn-primary">Edit</a>
+						 	<a href="manage-services.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a> -->
 
 						 	</td> </tr>   <?php 
 $cnt=$cnt+1;

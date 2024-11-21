@@ -19,10 +19,17 @@
         <div class="profile_details_left"><!--notifications of menu start -->
           <ul class="nofitications-dropdown">
             <?php
-$ret1=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tblbook.ID as bid,tblbook.AptNumber from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.Status is null");
-$num=mysqli_num_rows($ret1);
+// $ret1=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tblbook.ID as bid,tblbook.AptNumber from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.Status is null");
+// $num=mysqli_num_rows($ret1);
 
-?>  
+            $ret1 = mysqli_query($con, "SELECT tbluser.FirstName, tbluser.LastName, tblbook.ID as bid, tblbook.AptNumber 
+                            FROM tblbook 
+                            JOIN tbluser ON tbluser.ID = tblbook.UserID 
+                            WHERE tblbook.Status IS NULL 
+                            ORDER BY tblbook.ID DESC");
+            $num = mysqli_num_rows($ret1);
+
+            ?>  
             <li class="dropdown head-dpdn">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?php echo $num;?></span></a>
               

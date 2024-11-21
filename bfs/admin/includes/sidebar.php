@@ -17,6 +17,18 @@
               </ul>
               <!-- /nav-second-level -->
             </li>
+            <li>
+              <a href="add-services.php"><i class="fa fa-cogs nav_icon"></i>Products<span class="fa arrow"></span> </a>
+              <ul class="nav nav-second-level collapse">
+                <li>
+                  <a href="add-products.php">Add Products</a>
+                </li>
+                <li>
+                  <a href="manage-products.php">Manage Products</a>
+                </li>
+              </ul>
+              <!-- /nav-second-level -->
+            </li>
             <li class="">
               <a href="about-us.php"><i class="fa fa-book nav_icon"></i>Pages <span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
@@ -62,26 +74,27 @@
              <li>
               <a href="customer-list.php" class="chart-nav"><i class="fa fa-users nav_icon"></i>Customer List</a>
             </li>
-              <li>
+              <!-- <li>
               <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Reports<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                  <li><a href="bwdates-reports-ds.php"> B/w dates</a></li>
                    
                     <li><a href="sales-reports.php">Sales Reports</a></li>
               </ul>
-              <!-- //nav-second-level -->
-            </li>
-
-            <!-- <li>
-              <a href="invoices.php" class="chart-nav"><i class="fa fa-file-text-o nav_icon"></i>Invoices</a>
             </li> -->
+
+            <li>
+              <a href="invoices.php" class="chart-nav"><i class="fa fa-file-text-o nav_icon"></i>Invoices</a>
+            </li>
             <li>
               <a href="search-appointment.php" class="chart-nav"><i class="fa fa-search nav_icon"></i>Search Appointment</a>
             </li>
             <!-- <li>
               <a href="search-invoices.php" class="chart-nav"><i class="fa fa-search nav_icon"></i>Search Invoice</a>
             </li> -->
-          
+            <!-- <li>
+              <a href="archived-appointments.php" class="chart-nav"><i class="fa fa-check-square-o nav_icon"></i>Archived Appointments</a>
+            </li> -->
 
           </ul>
           <div class="clearfix"> </div>

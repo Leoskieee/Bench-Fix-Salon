@@ -129,7 +129,7 @@ if(isset($_POST['submit']))
 						<h4>View Appointment:</h4>
 						<?php
 $cid=$_GET['viewid'];
-$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Service, tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.ID='$cid'");
+$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Service, tblbook.Service_Total_Price, tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.ID='$cid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -159,12 +159,18 @@ while ($row=mysqli_fetch_array($ret)) {
  
 <tr>
     <th>Appointment Time</th>
-    <td><?php  echo $row['AptTime'];?></td>
+    <!-- <td><?php  echo $row['AptTime'];?></td> -->
+    <td><?php echo date("g:i A", strtotime($row['AptTime'])); ?></td>
   </tr>
 
   <tr>
     <th>Service</th>
     <td><?php  echo $row['Service'];?></td>
+  </tr>
+
+  <tr>
+    <th>Total Price</th>
+    <td><?php  echo $row['Service_Total_Price'];?></td>
   </tr>
   
   
@@ -211,7 +217,7 @@ if($row['Status']=="Rejected")
     <th>Status :</th>
     <td>
    <select name="status" class="form-control wd-450" required="true" >
-     <option value="Selected" selected="true">Selected</option>
+     <option value="Confirmed" selected="true">Confirm</option>
      <option value="Rejected">Rejected</option>
    </select></td>
   </tr>

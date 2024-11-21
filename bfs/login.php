@@ -48,6 +48,99 @@ if(isset($_POST['login']))
         width: 100%;
         min-height: 100vh;
         display: flex;
+        padding-block-start: 0 !important;
+        flex-direction: row-reverse;
+      }
+      .user-form > * {
+        width: 100%;
+      }
+
+      .w3l-inner-banner-main {
+        background-repeat: repeat;
+        background: url("./assets/images/b8.jpg") no-repeat bottom center;
+        background-size: cover !important;
+      }
+
+      .w3l-inner-banner-main .about-inner:before,
+      .w3l-inner-banner-main .contact {
+        background: none !important;
+      }
+
+      .w3l-contact-info-main .container {
+        padding-inline: 6rem;
+      }
+
+      .w3l-contact-info-main .container .nav-link {
+        padding-inline: 0;
+        padding-block: 1rem;
+      }
+
+      /* Media Queries */
+      @media (max-width: 1024px) {
+        .w3l-contact-info-main .container {
+          padding-inline: 3rem;
+        }
+
+        .map-content-9 h3 {
+          font-size: 1.8rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .w3l-contact-info-main .container {
+          padding-inline: 1.5rem;
+        }
+
+        .twice-two.fl-c {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+
+        .map-content-9 h3 {
+          font-size: 1.5rem;
+          text-align: center;
+        }
+
+        .btn.btn-contact {
+          width: 100%;
+          margin-top: 1rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .user-form {
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          padding-block-start: 0 !important;
+        }
+
+        .w3l-contact-info-main .container {
+          padding-inline: 1rem;
+        }
+
+        .map-content-9 h3 {
+          font-size: 1.2rem;
+        }
+
+        form input,
+        form button {
+          font-size: 1rem;
+        }
+
+        .btn.btn-contact {
+          font-size: 1rem;
+        }
+      }
+    </style>
+
+    <!-- <style>
+      .user-form {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
         padding-block-start: 4rem;
         flex-direction: row-reverse;
       }
@@ -74,7 +167,7 @@ if(isset($_POST['login']))
         padding-inline: 0;
         padding-block: 1rem;
       }
-    </style>
+    </style> -->
   </head>
   <body id="home" class="user-form">
     <nav style="position: absolute; top: 0;">
