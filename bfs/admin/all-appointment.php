@@ -147,6 +147,50 @@ if ($_GET['delid']) {
     .filter-clear:hover {
         text-decoration: underline;
     }
+
+    /* Default styles for the filter form */
+    .filter-form {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .filter-select {
+        width: calc(33.33% - 1rem); /* Default width for three-column layout */
+        min-width: 330px;
+    }
+
+    .filter-button {
+        width: auto;
+        padding: 0.5rem 1rem;
+        min-width: 100px;
+    }
+
+    /* Adjust layout for smaller screens */
+    @media (max-width: 768px) {
+        .filter-select {
+            width: 48%; /* Two-column layout */
+        }
+
+        .filter-button {
+            width: 100%; /* Full-width button */
+        }
+    }
+
+    /* Adjust layout for very small screens */
+    @media (max-width: 480px) {
+        .filter-select {
+            width: 100%; /* Single-column layout */
+        }
+
+        .filter-form {
+            gap: 0.5rem;
+        }
+    }
+
 </style>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -192,31 +236,30 @@ if ($_GET['delid']) {
 					<h3 class="title1">All Appointment</h3>
 					
 					<form method="get" action="" class="filter-form">
-						<select name="status" class="filter-select">
-								<option value="">Status</option>
-								<option value="Confirmed">Confirmed</option>
-								<option value="Pending">Pending</option>
-								<option value="Cancelled">Cancelled</option>
-						</select>
-						
-						<select name="time_of_day" class="filter-select">
-								<option value="">Time of Day</option>
-								<option value="day">Day Time</option>
-								<option value="night">Night Time</option>
-						</select>
+                        <select name="status" class="filter-select">
+                            <option value="">Status</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
 
-						 <select name="appointment_type" class="filter-select">
-									<option value="">Appointment Type</option>
-									<option value="today">Today's Appointment</option>
-									<option value="weekly">Weekly Appointment</option>
-									<option value="monthly">Monthly Appointment</option>
-									<option value="next_week">Next Week Appointment</option>
-									<option value="next_month">Next Month Appointment</option>
-							</select>
+                        <select name="time_of_day" class="filter-select">
+                            <option value="">Time of Day</option>
+                            <option value="day">Day Time</option>
+                            <option value="night">Night Time</option>
+                        </select>
 
-						<button type="submit" class="filter-button">Filter</button>
-				</form>
+                        <select name="appointment_type" class="filter-select">
+                            <option value="">Appointment Type</option>
+                            <option value="today">Today's Appointment</option>
+                            <option value="weekly">Weekly Appointment</option>
+                            <option value="monthly">Monthly Appointment</option>
+                            <option value="next_week">Next Week Appointment</option>
+                            <option value="next_month">Next Month Appointment</option>
+                        </select>
 
+                        <button type="submit" class="filter-button">Filter</button>
+                    </form>
 				
 					<div class="table-responsive bs-example widget-shadow">
 						<table class="table table-bordered"> 
@@ -227,20 +270,22 @@ if ($_GET['delid']) {
 									<!-- <th>Name</th> -->
 									<!-- <th>Mobile Number</th>  -->
 									<th>Date</th>
-									<th>Time<th>
-									<th>Status</th>
+									<!-- <th>Time<th> -->
+									<!-- <th>Status</th> -->
 									<th>Action</th> 
 								</tr> 
 							</thead> 
 							<tbody>
     <?php
-    // Fetch filtered appointments
     $query = "SELECT tbluser.FirstName, tbluser.LastName, tbluser.MobileNumber, tblbook.ID AS bid, tblbook.AptNumber, 
               tblbook.AptDate, tblbook.AptTime, tblbook.Status
               FROM tblbook
               JOIN tbluser ON tbluser.ID = tblbook.UserID
-              $filter_sql AND (tblbook.deleted_at IS NULL OR tblbook.deleted_at < NOW() - INTERVAL 30 DAY)
-              ORDER BY tblbook.BookingDate DESC LIMIT $limit OFFSET $offset";
+              $filter_sql
+              AND (tblbook.deleted_at IS NULL OR tblbook.deleted_at < NOW() - INTERVAL 30 DAY)
+              ORDER BY tblbook.BookingDate DESC
+              LIMIT $limit OFFSET $offset";
+
 
     $ret = mysqli_query($con, $query);
     $cnt = $offset + 1;
@@ -252,18 +297,20 @@ if ($_GET['delid']) {
     ?>
             <tr> 
                 <td scope="row"><?php echo $cnt; ?></td> 
-                <!-- <td><?php echo $row['AptNumber']; ?></td>  -->
-                <!-- <td><?php echo $row['FirstName']; ?> <?php echo $row['LastName']; ?></td> -->
-                <!-- <td><?php echo $row['MobileNumber']; ?></td> -->
+                <!-- <td><?php // echo $row['AptNumber']; ?></td>  -->
+                <!-- <td><?php // echo $row['FirstName']; ?> <?php // echo $row['LastName']; ?></td> -->
+                <!-- <td><?php // echo $row['MobileNumber']; ?></td> -->
                 <td><?php echo $row['AptDate']; ?></td> 
-                <td><?php echo date("g:i A", strtotime($row['AptTime'])); ?></td>
-                <td class="font-w600">
-                    <?php if ($row['Status'] == "") {
-                        echo "Pending"; 
-                    } else { 
-                        echo $row['Status']; 
-                    }?>
-                </td>
+                <!-- <td><?php  //echo date("g:i A", strtotime($row['AptTime'])); ?></td> -->
+                <!-- <td class="font-w600">
+                    <?php 
+                    // if ($row['Status'] == "") {
+                    //     echo "Pending"; 
+                    // } else { 
+                    //     echo $row['Status']; 
+                    // }
+                    ?>
+                </td> -->
                 <td>
                     <a href="view-appointment.php?viewid=<?php echo $row['bid']; ?>" class="btn btn-primary">View</a>
                     <a href="all-appointment.php?delid=<?php echo $row['bid']; ?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
