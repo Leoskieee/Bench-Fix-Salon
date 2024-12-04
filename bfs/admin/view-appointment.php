@@ -58,7 +58,7 @@ if(isset($_POST['submit']))
 
             $mail->isHTML(true);
 
-            if ($status == "Selected") {
+            if ($status == "Confirmed") {
               $mail->Subject = "Win Salon Appointment Approved";
               $mail->Body = "Hello $UserName,<br><br>Your appointment request (ID: $aptId) has been approved. Please check your account for details.<br><br>Thanks for choosing Win Salon!";
             } elseif ($status == "Rejected") {
