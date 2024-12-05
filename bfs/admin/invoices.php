@@ -19,6 +19,25 @@ echo "<script>window.location.href='invoices.php'</script>";
 <head>
 <title>BFS || Invoices</title>
 
+<style>
+	/* Default styles for buttons in the table */
+td a.btn {
+    display: inline-block;
+    margin: 0.5rem; /* Add some spacing between buttons */
+}
+
+/* Responsive styling for mobile view */
+@media (max-width: 768px) {
+    td.btn-container {
+        display: flex;
+        flex-direction: column; /* Stack buttons vertically */
+        /* gap: 0.5rem; Add spacing between stacked buttons */
+        align-items: center; /* Center align buttons */
+    }
+}
+
+</style>
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -69,7 +88,7 @@ echo "<script>window.location.href='invoices.php'</script>";
 							<thead> <tr> 
 								<th>#</th> 
 								<th>Invoice Id</th> 
-								<th>Customer Name</th> 
+								<!-- <th>Customer Name</th>  -->
 								<th>Invoice Date</th> 
 								<th>Action</th>
 							</tr> 
@@ -85,10 +104,11 @@ while ($row=mysqli_fetch_array($ret)) {
 						 <tr> 
 						 	<th scope="row"><?php echo $cnt;?></th> 
 						 	<td><?php  echo $row['BillingId'];?></td>
-						 	<td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td>
+						 	<!-- <td><?php  // echo $row['FirstName'];?> <?php  // echo $row['LastName'];?></td> -->
 						 	<td><?php  echo $row['invoicedate'];?></td> 
-						 		<td><a href="view-invoice.php?invoiceid=<?php  echo $row['BillingId'];?>" class="btn btn-primary">View</a>
-<a href="invoices.php?delid=<?php echo $row['BillingId'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+						 		<td class="btn-container">
+									<a href="view-invoice.php?invoiceid=<?php  echo $row['BillingId'];?>" class="btn btn-primary">View</a>
+									<a href="invoices.php?delid=<?php echo $row['BillingId'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
 						 		</td> 
 
 						  </tr>   <?php 

@@ -5,19 +5,52 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['bpmsaid']==0)) {
   header('location:logout.php');
   } else{
+		if($_GET['delid']){
+			$sid=$_GET['delid'];
+			mysqli_query($con,"delete from tbluser where ID ='$sid'");
+			echo "<script>alert('Data Deleted');</script>";
+			echo "<script>window.location.href='unreadenq.php'</script>";
+  }
 
-if($_GET['delid']){
-$sid=$_GET['delid'];
-mysqli_query($con,"delete from tbluser where ID ='$sid'");
-echo "<script>alert('Data Deleted');</script>";
-echo "<script>window.location.href='unreadenq.php'</script>";
-          }
+	 // Pagination setup
+    $limit = 10; // Records per page
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
+    $offset = ($page - 1) * $limit; // Offset calculation
 
+    // Get total records
+    $result = mysqli_query($con, "SELECT COUNT(*) AS total FROM tbluser");
+    $row = mysqli_fetch_assoc($result);
+    $total_records = $row['total'];
+    $total_pages = ceil($total_records / $limit);
+
+    // Fetch records for the current page
+    $query = "SELECT * FROM tbluser LIMIT $limit OFFSET $offset";
+    $ret = mysqli_query($con, $query);
   ?>
 <!DOCTYPE HTML>
 <html>
 <head>
 <title>BFS || Customer List</title>
+
+<style>
+	.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.table {
+    width: 100%;
+    min-width: 600px; /* Ensures table won't collapse too much */
+    border-collapse: collapse;
+}
+
+@media (max-width: 768px) {
+    .table {
+        min-width: unset; /* Remove minimum width on smaller screens */
+    }
+}
+
+</style>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -64,22 +97,63 @@ echo "<script>window.location.href='unreadenq.php'</script>";
 					
 				
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>Customer List:</h4>
-						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th>Name</th> <th>Mobile Number</th><th>Email</th> <th>RegistrationDate</th><th>Action</th> </tr> </thead> <tbody>
-<?php
-$ret=mysqli_query($con,"select *from  tbluser");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
+							<h4>Customer List:</h4>
+							<div class="table-wrapper">
+									<table class="table table-bordered">
+											<thead>
+													<tr>
+															<th>#</th>
+															<th>Name</th>
+															<th>Mobile Number</th>
+															<th>Email</th>
+															<th>Registration Date</th>
+															<th>Action</th>
+													</tr>
+											</thead>
+											<tbody>
+													<?php
+													$ret = mysqli_query($con, "select * from tbluser");
+													$cnt = 1;
+													while ($row = mysqli_fetch_array($ret)) {
+													?>
+															<tr>
+																	<th scope="row"><?php echo $cnt; ?></th>
+																	<td><?php echo $row['FirstName']; ?> <?php echo $row['LastName']; ?></td>
+																	<td><?php echo $row['MobileNumber']; ?></td>
+																	<td><?php echo $row['Email']; ?></td>
+																	<td><?php echo $row['RegDate']; ?></td>
+																	<td>
+																			<a href="add-customer-services.php?addid=<?php echo $row['ID']; ?>" class="btn btn-primary">Assign Services</a>
+																			<a href="customer-list.php?delid=<?php echo $row['ID']; ?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+																	</td>
+															</tr>
+													<?php
+															$cnt = $cnt + 1;
+													} ?>
+											</tbody>
+									</table>
+							</div>
 
-?>
+							<!-- Pagination Links -->
+                    <nav>
+                        <ul class="pagination">
+                            <?php if ($page > 1): ?>
+                                <li class="page-item"><a class="page-link" href="customer-list.php?page=<?php echo $page - 1; ?>">Previous</a></li>
+                            <?php endif; ?>
 
-						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td> <td><?php  echo $row['MobileNumber'];?></td><td><?php  echo $row['Email'];?></td><td><?php  echo $row['RegDate'];?></td> 
-						 	<td> <a href="add-customer-services.php?addid=<?php echo $row['ID'];?>" class="btn btn-primary">Assign Services</a>
-<a href="customer-list.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
-						 		</td> </tr>   <?php 
-$cnt=$cnt+1;
-}?></tbody> </table> 
+                            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                                <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
+                                    <a class="page-link" href="customer-list.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                </li>
+                            <?php endfor; ?>
+
+                            <?php if ($page < $total_pages): ?>
+                                <li class="page-item"><a class="page-link" href="customer-list.php?page=<?php echo $page + 1; ?>">Next</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </nav>
 					</div>
+
 				</div>
 			</div>
 		</div>

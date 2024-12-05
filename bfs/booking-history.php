@@ -4,21 +4,22 @@ error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['bpmsuid']==0)) {
   header('location:logout.php');
-  } else{
-
-
-
+} else {
+  
+  // Set the number of results per page
+  $limit = 5;
+  
+  // Get the current page from the URL or set it to 1 if not available
+  $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+  
+  // Calculate the offset for the query
+  $offset = ($page - 1) * $limit;
+  
   ?>
 <!doctype html>
 <html lang="en">
   <head>
- 
-
     <title>Win Salon | Booking History</title>
-
-    <style>
-        
-    </style>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -29,125 +30,94 @@ if (strlen($_SESSION['bpmsuid']==0)) {
   <body id="home">
 <?php include_once('includes/header.php');?>
 
-<script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
-<!--bootstrap working-->
+<!-- Your existing scripts -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-<!-- //bootstrap working-->
-<!-- disable body scroll which navbar is in active -->
-<script>
-$(function () {
-  $('.navbar-toggler').click(function () {
-    $('body').toggleClass('noscroll');
-  })
-});
-</script>
 
-<!-- disable body scroll which navbar is in active -->
+<!-- breadcrumbs and other sections -->
 
-<!-- breadcrumbs -->
-<section class="w3l-inner-banner-main">
-    <div class="about-inner contact ">
-        <div class="container">   
-            <div class="main-titles-head text-center">
-            <h3 class="header-name ">
-                
- 
-            </h3>
-            <p class="tiltle-para "></p>
-        </div>
-</div>
-</div>
-<div class="breadcrumbs-sub">
-<div class="container">   
-<ul class="breadcrumbs-custom-path">
-    <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
-    <li class="active ">
-        Booking History</li>
-</ul>
-</div>
-</div>
-    </div>
-</section>
-<!-- breadcrumbs //-->
 <section class="w3l-contact-info-main" id="contact">
     <div class="contact-sec	">
         <div class="container">
-
             <div>
-                <div>
-                   <div class="table-content table-responsive cart-table-content m-t-30">
+                <div class="table-content table-responsive cart-table-content m-t-30">
                     <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment History</h4>
                         <table border="2" class="table">
-                            <thead class="gray-bg" >
+                            <thead class="gray-bg">
                                 <tr>
                                     <th>#</th>
-                                <!-- <th>Appointment Number</th> -->
-                                <th>Appointment Date</th>
-                                <!-- <th>Appointment Time</th> -->
-                                <!-- <th>Appointment Status</th> -->
-                                <th>Action</th>
+                                    <th>Appointment Date</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                               
-                                <tr>
-                                    <?php
-                                   $userid= $_SESSION['bpmsuid'];
- $query=mysqli_query($con,"select tbluser.ID as uid, tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tbluser.ID='$userid'");
-$cnt=1;
-              while($row=mysqli_fetch_array($query))
-              { ?>
-               <tr>
-    <td><?php echo $cnt;?></td>
-<!-- <td><?php echo $row['AptNumber'];?></td> -->
-<td><p> <?php echo $row['AptDate']?> </p></td> 
-<!-- <td><?php echo $row['AptTime']?></td>  -->
- <!-- <td><?php echo date("g:i A", strtotime($row['AptTime'])); ?></td> -->
-<!-- <td><?php $status=$row['Status'];
-if($status==''){
- echo "Waiting for confirmation";   
-} else{
-echo $status;
-}
-?>  </td>    -->
-
-<td><a href="appointment-detail.php?aptnumber=<?php echo $row['AptNumber'];?>" class="btn btn-primary">View</a></td>       
-</tr><?php $cnt=$cnt+1; } ?>
-                             
+                                <?php
+                                $userid = $_SESSION['bpmsuid'];
+                                // Update query to include LIMIT and OFFSET
+                                $query = mysqli_query($con, "SELECT tbluser.ID as uid, tbluser.FirstName, tbluser.LastName, tbluser.Email, tbluser.MobileNumber, tblbook.ID as bid, tblbook.AptNumber, tblbook.AptDate, tblbook.AptTime, tblbook.Message, tblbook.BookingDate, tblbook.Status 
+                                                            FROM tblbook 
+                                                            JOIN tbluser ON tbluser.ID = tblbook.UserID 
+                                                            WHERE tbluser.ID = '$userid' 
+                                                            ORDER BY tblbook.BookingDate DESC
+                                                            LIMIT $limit OFFSET $offset");
+                                $cnt = 1;
+                                while ($row = mysqli_fetch_array($query)) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $cnt;?></td>
+                                        <td><p><?php echo $row['AptDate']; ?></p></td>
+                                        <td><a href="appointment-detail.php?aptnumber=<?php echo $row['AptNumber'];?>" class="btn btn-primary">View</a></td>
+                                    </tr>
+                                <?php 
+                                    $cnt++;
+                                } 
+                                ?>
                             </tbody>
                         </table>
-                    </div> </div>
-                
+                    </div>
+                </div>
+<?php 
+// Pagination Logic
+// Count the total number of records for the user
+$total_query = mysqli_query($con, "SELECT COUNT(*) AS total FROM tblbook WHERE UserID = '$userid'");
+$total_result = mysqli_fetch_assoc($total_query);
+$total_records = $total_result['total'];
+$total_pages = ceil($total_records / $limit); // Calculate total pages
+
+// Display pagination links
+echo '<div class="pagination" style="text-align: center;">';
+for ($i = 1; $i <= $total_pages; $i++) {
+    echo '<a href="?page=' . $i . '" class="btn btn-secondary" style="margin: 0 5px;">' . $i . '</a>';
+}
+echo '</div>';
+?>
+            </div>
+        </div>
     </div>
-   
-    </div></div>
 </section>
+
+
 <?php include_once('includes/footer.php');?>
-<!-- move top -->
+
+<!-- move top button and scripts -->
 <button onclick="topFunction()" id="movetop" title="Go to top">
-	<span class="fa fa-long-arrow-up"></span>
+    <span class="fa fa-long-arrow-up"></span>
 </button>
+
 <script>
-	// When the user scrolls down 20px from the top of the document, show the button
-	window.onscroll = function () {
-		scrollFunction()
-	};
-
-	function scrollFunction() {
-		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-			document.getElementById("movetop").style.display = "block";
-		} else {
-			document.getElementById("movetop").style.display = "none";
-		}
-	}
-
-	// When the user clicks on the button, scroll to the top of the document
-	function topFunction() {
-		document.body.scrollTop = 0;
-		document.documentElement.scrollTop = 0;
-	}
+    window.onscroll = function () { scrollFunction() };
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 </script>
-<!-- /move top -->
 </body>
-
-</html><?php } ?>
+</html>
+<?php } ?>
