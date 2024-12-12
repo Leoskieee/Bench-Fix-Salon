@@ -184,7 +184,7 @@
                             </form>
                         </div>
 
-                        <?php if (strlen($_SESSION['bpmsuid']) > 0) { ?>
+                        <!-- <?php  // if (strlen($_SESSION['bpmsuid']) > 0) { ?> -->
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle custom-dropdown-toggle no-arrow" href="#" id="userMenu" role="button" 
@@ -201,7 +201,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                        <?php } ?>
+                        <!-- <?php // } ?> -->
                     </div>
                 </nav>
             </div>
