@@ -15,12 +15,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-if ($user === null) {
-    // Redirect or display a friendly error message
-    echo "<script>alert('Invalid or expired token.'); window.close();</script>";
-    exit;
-}else{
-
+if ($user != null) {
     $sql = "UPDATE tbluser SET account_activation_hash = NULL WHERE id = ?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("i", $user["ID"]); // Assuming user_id is an integer
@@ -28,4 +23,10 @@ if ($user === null) {
     
     echo "<script> alert('Your account is verified you can now login.'); window.close(); </script>";
     exit;
+    
+}else{
+// Redirect or display a friendly error message
+echo "<script>alert('Invalid or expired token.'); window.close();</script>";
+exit;
+    
 }
