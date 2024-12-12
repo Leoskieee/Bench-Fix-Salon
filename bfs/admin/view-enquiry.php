@@ -14,7 +14,7 @@ $query=mysqli_query($con, "update   tblcontact set IsRead ='$isread' where ID='$
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>BFS || Manage Unread Inquiry</title>
+<title>Win Salon | Manage Unread Inquiry</title>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />

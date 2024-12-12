@@ -21,7 +21,7 @@ if (isset($_GET['restoreid'])) {
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>BFS || Archived Appointments</title>
+    <title>Win Salon | Archived Appointments</title>
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />

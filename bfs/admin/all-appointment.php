@@ -95,7 +95,7 @@ if ($_GET['delid']) {
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>BFS || All Appointment</title>
+<title>Win Salon | All Appointment</title>
 
 <style>
     /* Styling the form container */
@@ -267,7 +267,7 @@ if ($_GET['delid']) {
 								<tr> 
 									<th>#</th> 
 									<!-- <th> Appointment Number</th>  -->
-									<!-- <th>Name</th> -->
+									<th>Name</th>
 									<!-- <th>Mobile Number</th>  -->
 									<th>Date</th>
 									<!-- <th>Time<th> -->
@@ -298,7 +298,7 @@ if ($_GET['delid']) {
             <tr> 
                 <td scope="row"><?php echo $cnt; ?></td> 
                 <!-- <td><?php // echo $row['AptNumber']; ?></td>  -->
-                <!-- <td><?php // echo $row['FirstName']; ?> <?php // echo $row['LastName']; ?></td> -->
+                <td><?php echo $row['FirstName']; ?> <?php echo $row['LastName']; ?></td>
                 <!-- <td><?php // echo $row['MobileNumber']; ?></td> -->
                 <td><?php echo $row['AptDate']; ?></td> 
                 <!-- <td><?php  //echo date("g:i A", strtotime($row['AptTime'])); ?></td> -->

@@ -6,7 +6,7 @@
         <!--logo -->
         <div class="logo">
           <a href="index.html">
-            <h1>BFS</h1>
+            <h1>Win Salon</h1>
             <span>AdminPanel</span>
           </a>
         </div>

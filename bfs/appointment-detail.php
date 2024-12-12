@@ -81,76 +81,76 @@ while ($row=mysqli_fetch_array($ret)) {
 
 ?>
                         <table class="table table-bordered">
+                            <!-- <tr>
+                              <th>Appointment Number</th>
+                              <td><?php  // echo $row['AptNumber'];?></td>
+                            </tr> -->
                             <tr>
-    <th>Appointment Number</th>
-    <td><?php  echo $row['AptNumber'];?></td>
-  </tr>
-  <tr>
-<th>Name</th>
-    <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td>
-  </tr>
+                              <th>Name</th>
+                              <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td>
+                            </tr>
 
-<tr>
-    <th>Email</th>
-    <td><?php  echo $row['Email'];?></td>
-  </tr>
-   <tr>
-    <th>Mobile Number</th>
-    <td><?php  echo $row['MobileNumber'];?></td>
-  </tr>
-   <tr>
-    <th>Appointment Date</th>
-    <td><?php  echo $row['AptDate'];?></td>
-  </tr>
- 
-<tr>
-    <th>Appointment Time</th>
-    <!-- <td><?php  echo $row['AptTime'];?></td> -->
-     <td><?php echo date("g:i A", strtotime($row['AptTime'])); ?></td>
-  </tr>
+                          <tr>
+                              <th>Email</th>
+                              <td><?php  echo $row['Email'];?></td>
+                            </tr>
+                            <tr>
+                              <th>Mobile Number</th>
+                              <td><?php  echo $row['MobileNumber'];?></td>
+                            </tr>
+                            <tr>
+                              <th>Appointment Date</th>
+                              <td><?php  echo $row['AptDate'];?></td>
+                            </tr>
+                          
+                          <tr>
+                              <th>Appointment Time</th>
+                              <!-- <td><?php  echo $row['AptTime'];?></td> -->
+                              <td><?php echo date("g:i A", strtotime($row['AptTime'])); ?></td>
+                            </tr>
 
-  <tr>
-    <th>Service</th>
-    <td><?php  echo $row['Service'];?></td>
-  </tr>
-  
-  
-  <tr>
-    <th>Apply Date</th>
-    <td><?php  echo $row['BookingDate'];?></td>
-  </tr>
+                            <tr>
+                              <th>Service</th>
+                              <td><?php  echo $row['Service'];?></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                              <th>Apply Date</th>
+                              <td><?php  echo $row['BookingDate'];?></td>
+                            </tr>
 
-  <tr>
-    <th>Notes</th>
-    <td><?php  echo $row['Message'];?></td>
-  </tr>
+                            <tr>
+                              <th>Notes</th>
+                              <td><?php  echo $row['Message'];?></td>
+                            </tr>
 
-  <tr>
-    <th>Salon's Message</th>
-    <td><?php  echo $row['Remark'];?></td>
-  </tr>
-  
+                            <tr>
+                              <th>Salon's Message</th>
+                              <td><?php  echo $row['Remark'];?></td>
+                            </tr>
+                            
 
-<tr>
-    <th>Status</th>
-    <td> <?php  
-if(empty($row['Status']))
-{
-  echo "Pending";
-}
+                          <tr>
+                              <th>Status</th>
+                              <td> <?php  
+                          if(empty($row['Status']))
+                          {
+                            echo "Pending";
+                          }
 
-if($row['Status']=="Confirmed")
-{
-  echo $row['Status'];
-}
+                          if($row['Status']=="Confirmed")
+                          {
+                            echo $row['Status'];
+                          }
 
-if($row['Status']=="Rejected")
-{
-  echo "Rejected";
-}
+                          if($row['Status']=="Rejected")
+                          {
+                            echo "Rejected";
+                          }
 
-     ;?></td>
-  </tr>
+                              ;?></td>
+                            </tr>
                         </table><?php } ?>
                     </div> </div>
                 

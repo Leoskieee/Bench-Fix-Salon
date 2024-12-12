@@ -74,55 +74,112 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
 
         }
 
-
-        // Check how many appointments exist for the selected date
         $countQuery = mysqli_query($con, "SELECT COUNT(*) as total FROM tblbook WHERE AptDate = '$adate'");
         $countResult = mysqli_fetch_array($countQuery);
         $totalAppointments = $countResult['total'];
 
-        if ($totalAppointments < 10) {
-            // Insert the appointment if less than 10
-            $query = mysqli_query($con, "INSERT INTO tblbook(UserID, AptNumber, AptDate, AptTime, Service, Message, Service_Total_Price) 
-                VALUES ('$uid', '$aptnumber', '$adate', '$atime', '$service', '$msg', '$totalPrice')");
+        if ($totalAppointments < 5) {
+            $hourlyQuery = mysqli_query($con, "SELECT COUNT(*) as total FROM tblbook WHERE AptDate = '$adate' AND AptTime = '$atime'");
+            $hourlyResult = mysqli_fetch_array($hourlyQuery);
+            $totalHourlyAppointments = $hourlyResult['total'];
 
-            if ($query) {
-                $ret = mysqli_query($con, "SELECT AptNumber FROM tblbook WHERE tblbook.UserID='$uid' ORDER BY ID DESC LIMIT 1;");
-                $result = mysqli_fetch_array($ret);
-                $_SESSION['aptno'] = $result['AptNumber'];
+            if ($totalHourlyAppointments < 1) {
+                // Insert the appointment if both daily and hourly limits are not exceeded
+                $query = mysqli_query($con, "INSERT INTO tblbook(UserID, AptNumber, AptDate, AptTime, Service, Message, Service_Total_Price) 
+                    VALUES ('$uid', '$aptnumber', '$adate', '$atime', '$service', '$msg', '$totalPrice')");
 
-                require __DIR__ . "/../vendor/autoload.php";
+                if ($query) {
+                    $ret = mysqli_query($con, "SELECT AptNumber FROM tblbook WHERE tblbook.UserID='$uid' ORDER BY ID DESC LIMIT 1;");
+                    $result = mysqli_fetch_array($ret);
+                    $_SESSION['aptno'] = $result['AptNumber'];
 
-                $mail = new PHPMailer(true);
+                    require __DIR__ . "/../vendor/autoload.php";
 
-                try {
-                    $mail->isSMTP();
-                    $mail->Host = "smtp.gmail.com";
-                    $mail->SMTPAuth = true;
-                    $mail->Username = "leonardr009@gmail.com";
-                    $mail->Password = "llgp swji majk hqwh";
-                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
-                    $mail->Port = 587;
+                    $mail = new PHPMailer(true);
 
-                    $mail->setFrom($Uemail);
-                    $mail->addAddress("leonardr009@gmail.com", "ADMIN");
+                    try {
+                        $mail->isSMTP();
+                        $mail->Host = "smtp.gmail.com";
+                        $mail->SMTPAuth = true;
+                        $mail->Username = "leonardr009@gmail.com";
+                        $mail->Password = "llgp swji majk hqwh";
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+                        $mail->Port = 587;
 
-                    $mail->isHTML(true);
-                    $mail->Subject = "Win Salon Appointment Request";
-                    $aptnumber = $_SESSION['aptno'] = $result['AptNumber'];
-                    $mail->Body = "Win Salon website has recieved new appointment request : $aptnumber : go to website to see details";
+                        $mail->setFrom($Uemail);
+                        $mail->addAddress("leonardr009@gmail.com", "ADMIN");
 
-                    $mail->send();
-                    echo "<script>window.location.href='thank-you.php'</script>";
-                } catch (Exception $e) {
-                    $availabilityMessage = "Mailer Error: " . $mail->ErrorInfo;
+                        $mail->isHTML(true);
+                        $mail->Subject = "Win Salon Appointment Request";
+                        $aptnumber = $_SESSION['aptno'] = $result['AptNumber'];
+                        $mail->Body = "Win Salon website has recieved new appointment request : $aptnumber : go to website to see details";
+
+                        $mail->send();
+                        echo "<script>window.location.href='booking-history.php'</script>";
+                    } catch (Exception $e) {
+                        $availabilityMessage = "Mailer Error: " . $mail->ErrorInfo;
+                    }
+
+                } else {
+                    $availabilityMessage = "Something went wrong. Please try again.";
                 }
-
             } else {
-                $availabilityMessage = "Something Went Wrong. Please try again.";
+                $availabilityMessage = "Sorry, this time slot is already booked. Please choose another time.";
             }
         } else {
-            $availabilityMessage = "Sorry, we're fully booked right now. Please try another day.";
+            $availabilityMessage = "Sorry, we're fully booked for today. Please try another day.";
         }
+
+
+
+        // Check how many appointments exist for the selected date
+        // $countQuery = mysqli_query($con, "SELECT COUNT(*) as total FROM tblbook WHERE AptDate = '$adate'");
+        // $countResult = mysqli_fetch_array($countQuery);
+        // $totalAppointments = $countResult['total'];
+
+        // if ($totalAppointments < 10) {
+        //     // Insert the appointment if less than 10
+        //     $query = mysqli_query($con, "INSERT INTO tblbook(UserID, AptNumber, AptDate, AptTime, Service, Message, Service_Total_Price) 
+        //         VALUES ('$uid', '$aptnumber', '$adate', '$atime', '$service', '$msg', '$totalPrice')");
+
+        //     if ($query) {
+        //         $ret = mysqli_query($con, "SELECT AptNumber FROM tblbook WHERE tblbook.UserID='$uid' ORDER BY ID DESC LIMIT 1;");
+        //         $result = mysqli_fetch_array($ret);
+        //         $_SESSION['aptno'] = $result['AptNumber'];
+
+        //         require __DIR__ . "/../vendor/autoload.php";
+
+        //         $mail = new PHPMailer(true);
+
+        //         try {
+        //             $mail->isSMTP();
+        //             $mail->Host = "smtp.gmail.com";
+        //             $mail->SMTPAuth = true;
+        //             $mail->Username = "leonardr009@gmail.com";
+        //             $mail->Password = "llgp swji majk hqwh";
+        //             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+        //             $mail->Port = 587;
+
+        //             $mail->setFrom($Uemail);
+        //             $mail->addAddress("leonardr009@gmail.com", "ADMIN");
+
+        //             $mail->isHTML(true);
+        //             $mail->Subject = "Win Salon Appointment Request";
+        //             $aptnumber = $_SESSION['aptno'] = $result['AptNumber'];
+        //             $mail->Body = "Win Salon website has recieved new appointment request : $aptnumber : go to website to see details";
+
+        //             $mail->send();
+        //             echo "<script>window.location.href='booking-history.php'</script>";
+        //         } catch (Exception $e) {
+        //             $availabilityMessage = "Mailer Error: " . $mail->ErrorInfo;
+        //         }
+
+        //     } else {
+        //         $availabilityMessage = "Something Went Wrong. Please try again.";
+        //     }
+        // } else {
+        //     $availabilityMessage = "Sorry, we're fully booked right now. Please try another day.";
+        // }
     }
 }
 ?>

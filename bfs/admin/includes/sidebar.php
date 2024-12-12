@@ -84,7 +84,7 @@
             </li> -->
 
             <li>
-              <a href="invoices.php" class="chart-nav"><i class="fa fa-file-text-o nav_icon"></i>Invoices</a>
+              <a href="invoices.php" class="chart-nav"><i class="fa fa-file-text-o nav_icon"></i>Sales</a>
             </li>
             <li>
               <a href="search-appointment.php" class="chart-nav"><i class="fa fa-search nav_icon"></i>Search Appointment</a>
@@ -95,6 +95,10 @@
             <!-- <li>
               <a href="archived-appointments.php" class="chart-nav"><i class="fa fa-check-square-o nav_icon"></i>Archived Appointments</a>
             </li> -->
+
+            <li>
+              <a href="feedbacks.php" class="chart-nav"><i class="fa fa-file-text-o nav_icon"></i>Feedback</a>
+            </li>
 
           </ul>
           <div class="clearfix"> </div>
