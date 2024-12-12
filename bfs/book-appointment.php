@@ -90,7 +90,7 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
                 $result = mysqli_fetch_array($ret);
                 $_SESSION['aptno'] = $result['AptNumber'];
 
-                require __DIR__ . "/../vendor/autoload.php";
+                require __DIR__ . "/vendor/autoload.php";
 
                 $mail = new PHPMailer(true);
 

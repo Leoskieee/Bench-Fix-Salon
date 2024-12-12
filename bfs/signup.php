@@ -29,7 +29,7 @@ echo "<script>alert('This email or Contact Number already associated with anothe
     
 
     if ($query) {
-      require __DIR__ . "/../vendor/autoload.php";
+      require __DIR__ . "/vendor/autoload.php";
 
       $mail = new PHPMailer(true);
 
@@ -43,7 +43,7 @@ echo "<script>alert('This email or Contact Number already associated with anothe
 
       $mail->setFrom("leonardr009@gmail.com");
       $mail->addAddress($email);
-      $baseUrl = "http://localhost/bench-fix-salon/bfs";
+      $baseUrl = "http://winsaloncapstone.lovestoblog.com/";
       $activationUrl = $baseUrl . "/includes/email_activation.php?token=$activation_token";
 
       $mail->isHTML(true);

@@ -17,16 +17,26 @@ if(isset($_POST['login']))
      header('location:admin/dashboard.php');
     }
     else{
-        $query=mysqli_query($con,"select ID from tbluser where  (Email='$emailcon' || MobileNumber='$emailcon' && account_activation_hash = '$null') && Password='$password'");
-        $ret=mysqli_fetch_array($query);
-        if($ret>0){
-            $_SESSION['bpmsuid']=$ret['ID'];
-            header('location:index.php');
+      $CheckAccountActivated = mysqli_query($con, "SELECT account_activation_hash FROM tbluser WHERE Email = '$emailcon' OR MobileNumber= '$emailcon'");
+      $rets = mysqli_fetch_array($CheckAccountActivated);
+
+      if ($rets !== NULL && $rets['account_activation_hash'] !== NULL) {
+          // If account_activation_hash is not null, the account is activated
+          echo "<script>alert('Account is not activated.'); </script>";
+          echo "<script>window.location.href='login.php';</script>";
+          exit();
+      } else {
+          // If account_activation_hash is null, account is not activated
+          $query = mysqli_query($con, "SELECT ID FROM tbluser WHERE (Email = '$emailcon' OR MobileNumber = '$emailcon') AND account_activation_hash IS NULL AND Password = '$password'");
+          $ret = mysqli_fetch_array($query);
+          if ($ret) {
+              $_SESSION['bpmsuid'] = $ret['ID'];
+              header('Location: index.php');
+          } else {
+              echo "<script>alert('Invalid Details.');</script>";
+          }
         }
-        else{
-        echo "<script>alert('Invalid Details.');</script>";
-        }
-    }
+      }
 
     
     } 

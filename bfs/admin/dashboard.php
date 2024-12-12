@@ -1,6 +1,9 @@
 <?php
 session_start();
-error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+// error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['bpmsaid']==0)) {
   header('location:logout.php');
@@ -162,13 +165,14 @@ $totalser=mysqli_num_rows($query5);
 					<div class="col-md-4 widget states-last">
 						<?php
 //todays sale
+$todaysale="0";
  $query6=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
  from tblinvoice 
   join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)=CURDATE();");
 while($row=mysqli_fetch_array($query6))
 {
 $todays_sale=$row['Cost'];
-$todysale+=$todays_sale;
+$todaysale+=$todays_sale;
 
 }
  ?>
@@ -178,7 +182,7 @@ $todysale+=$todays_sale;
 						</div>
 						<div class="stats-right">
 							<label> <?php 
-if($todysale==""):
+if(empty($todysale)):
 							echo "0";
 else:
 	echo $todysale;
@@ -197,6 +201,7 @@ endif;
 					<div class="col-md-4 widget">
 						<?php
 //Yesterday's sale
+$yesterdaysale="0";
  $query7=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
  from tblinvoice 
   join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)=CURDATE()-1;");
@@ -213,7 +218,7 @@ $yesterdaysale+=$yesterdays_sale;
 						</div>
 						<div class="stats-right">
 							<label> <?php 
-if($yesterdaysale==""):
+if(empty($yesterdaysale)):
 							echo "0";
 else:
 	echo $yesterdaysale;
@@ -225,6 +230,7 @@ endif;
 					<div class="col-md-4 widget states-mdl">
 						<?php
 //Last Sevendays Sale
+$tseven="0";
  $query8=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
  from tblinvoice 
   join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)>=(DATE(NOW()) - INTERVAL 7 DAY);");
@@ -242,7 +248,7 @@ $tseven+=$sevendays_sale;
 						<div class="stats-right">
 							<label> <?php 
 
-						if($tseven==""):
+						if(empty($tseven)):
 							echo "0";
 else:
 	echo $tseven;
@@ -253,13 +259,14 @@ endif;?></label>
 					<div class="col-md-4 widget states-last">
 						<?php
 //Total Sale
+$totalsale="0";
  $query9=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
  from tblinvoice 
   join tblservices  on tblservices.ID=tblinvoice.ServiceId");
 while($row9=mysqli_fetch_array($query9))
 {
 $total_sale=$row9['Cost'];
-$totalsale+=$total_sale;
+ $totalsale+=$total_sale;
 
 }
  ?>
@@ -270,7 +277,7 @@ $totalsale+=$total_sale;
 						<div class="stats-right">
 							<label><?php
 
-		if($totalsale==""):
+		if(empty($totalsale)):
 							echo "0";
 else:
 	echo $totalsale;

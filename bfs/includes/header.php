@@ -130,7 +130,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.php">Contact</a>
                             </li>
-                            <?php if (strlen($_SESSION['bpmsuid'] == 0)) { ?>
+                            <?php if (!isset($_SESSION['bpmsuid'])) { ?>
                                 <li class="nav-item">
                                     <a class="nav-link" href="signup.php">Signup</a>
                                 </li>
@@ -140,7 +140,7 @@
                             <?php } ?>
                         </ul>
 
-                        <?php if (strlen($_SESSION['bpmsuid']) > 0) { ?>
+                        <?php if (isset($_SESSION['bpmsuid'])) { ?>
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle custom-dropdown-toggle no-arrow" href="#" id="userMenu" role="button" 

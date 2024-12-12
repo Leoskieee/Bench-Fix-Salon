@@ -13,7 +13,7 @@ while ($row=mysqli_fetch_array($ret)) {
 
 ?>
               <li>
-                <span class="fa fa-map-marker"></span> <p><?php  echo $row[''];?>Blk 3 Lot 1 Franco Sr, P1-A New Lower Bicutan Taguig City</p>
+                <span class="fa fa-map-marker"></span> <p>Blk 3 Lot 1 Franco Sr, P1-A New Lower Bicutan Taguig City</p>
               </li>
               <li><span class="fa fa-phone"></span><a href="tel:09503643741">+63<?php echo $row['MobileNumber'];?></a></li>
               <li><span class="fa fa-envelope-open-o"></span><a href="mailto:edwinpmagdangan@yahoo.com" class="mail">
