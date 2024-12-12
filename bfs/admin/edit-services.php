@@ -11,10 +11,11 @@ if(isset($_POST['submit']))
     $sername=$_POST['sername'];
     $serdesc=$_POST['serdesc'];
     $cost=$_POST['cost'];
+		$time=$_POST['time'];
    
  $eid=$_GET['editid'];
      
-    $query=mysqli_query($con, "update  tblservices set ServiceName='$sername',ServiceDescription='$serdesc',Cost='$cost' where ID='$eid' ");
+    $query=mysqli_query($con, "update  tblservices set ServiceName='$sername',ServiceDescription='$serdesc',Cost='$cost',Time='$time' where ID='$eid' ");
     if ($query) {
   
     echo "<script>alert('Service has been Updated.');</script>";
@@ -93,6 +94,7 @@ while ($row=mysqli_fetch_array($ret)) {
 							 <div class="form-group"> <label for="exampleInputEmail1">Service Name</label> <input type="text" class="form-control" id="sername" name="sername" placeholder="Service Name" value="<?php  echo $row['ServiceName'];?>" required="true"> </div>
 							 <div class="form-group"> <label for="exampleInputEmail1">Service Description</label> <textarea type="text" class="form-control" id="sername" name="serdesc" placeholder="Service Name" value="" required="true"><?php  echo $row['ServiceDescription'];?></textarea> </div>
 							 <div class="form-group"> <label for="exampleInputPassword1">Cost</label> <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost" value="<?php  echo $row['Cost'];?>" required="true"> </div>
+							 <div class="form-group"> <label for="exampleInputPassword1">Time</label> <input type="number" id="time" name="time" class="form-control" placeholder="Time" value="<?php  echo $row['Time'];?>" required="true"> </div>
 							 <div class="form-group"> <label for="exampleInputPassword1">Image</label>  <img src="images/<?php echo $row['Image']?>" width="120">
                <a href="update-image.php?lid=<?php echo $row['ID'];?>">Update Image</a> </div>
 							 <?php } ?>

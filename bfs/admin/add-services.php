@@ -11,6 +11,7 @@ if(isset($_POST['submit']))
     $sername=$_POST['sername'];
     $serdesc=$_POST['serdesc'];
     $cost=$_POST['cost'];
+		$time=$_POST['time'];
    $image=$_POST['image'];
 $image=$_FILES["image"]["name"];
 // get the image extension
@@ -29,7 +30,7 @@ $newimage=md5($image).time().$extension;
 // Code for move image into directory
 move_uploaded_file($_FILES["image"]["tmp_name"],"images/".$newimage);
      
-    $query=mysqli_query($con, "insert into  tblservices(ServiceName,ServiceDescription,Cost,Image) value('$sername','$serdesc','$cost','$newimage')");
+    $query=mysqli_query($con, "insert into  tblservices(ServiceName,ServiceDescription,Cost,Image, Time) value('$sername','$serdesc','$cost','$newimage', '$time')");
     if ($query) {
     	echo "<script>alert('Service has been added.');</script>"; 
     		echo "<script>window.location.href = 'add-services.php'</script>";   
@@ -102,8 +103,9 @@ move_uploaded_file($_FILES["image"]["tmp_name"],"images/".$newimage);
 
   
 							 <div class="form-group"> <label for="exampleInputEmail1">Service Name</label> <input type="text" class="form-control" id="sername" name="sername" placeholder="Service Name" value="" required="true"> </div>
-							 <div class="form-group"> <label for="exampleInputEmail1">Service Description</label> <textarea type="text" class="form-control" id="sername" name="serdesc" placeholder="Service Name" value="" required="true"></textarea> </div>
+							 <div class="form-group"> <label for="exampleInputEmail1">Service Description</label> <textarea type="text" class="form-control" id="serdesc" name="serdesc" placeholder="Service Name" value="" required="true"></textarea> </div>
 							  <div class="form-group"> <label for="exampleInputPassword1">Cost</label> <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost" value="" required="true"> </div>
+								<div class="form-group"> <label for="exampleInputPassword1">Time (min)</label> <input type="number" id="time" name="time" class="form-control" placeholder="Time" value="" required="true"> </div>
 							<div class="form-group"> <label for="exampleInputEmail1">Images</label> <input type="file" class="form-control" id="image" name="image" value="" required="true"> </div>
 							  <button type="submit" name="submit" class="btn btn-default">Add</button> </form> 
 						</div>

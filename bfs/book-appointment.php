@@ -27,52 +27,64 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
         $Uemail = $result['email'];;
 
          // Initialize total price variable
-        $totalPrice = $_POST['Service_Total_Price'];
-
-         // Loop through the selected services and add their prices
+        // $totalPrice = $_POST['Service_Total_Price'];
+        
+        $totalPrice = 0; // Initialize total price to 0
         if (!empty($_POST['service']) && is_array($_POST['service'])) {
             foreach ($_POST['service'] as $selectedService) {
-                switch ($selectedService) {
-                    case 'Hair Botox - 1500':
-                        $totalPrice += 1500;
-                        break;
-                    case 'Haircut - 80':
-                        $totalPrice += 80;
-                        break;
-                    case 'Cellophane - 300':
-                        $totalPrice += 300;
-                        break;
-                    case 'Hair Spa - 300':
-                        $totalPrice += 300;
-                        break;
-                    case 'Rebond - 1000':
-                        $totalPrice += 1000;
-                        break;
-                    case 'Foot Spa - 300':
-                        $totalPrice += 300;
-                        break;
-                    case 'Manicure - 70':
-                        $totalPrice += 70;
-                        break;
-                    case 'Blow-Dry - 120':
-                        $totalPrice += 120;
-                        break;
-                    case 'Hair Extensions - 600':
-                        $totalPrice += 600;
-                        break;
-                    case 'Scalp Treatment - 150':
-                        $totalPrice += 150;
-                        break;
-                    case 'Straightening - 300':
-                        $totalPrice += 300;
-                        break;
-                    case 'Perm - 250':
-                        $totalPrice += 250;
-                        break;
+                // Extract the price from the service value (assuming format "ServiceName - Price")
+                $price = explode(' - ', $selectedService);
+                if (isset($price[1])) {
+                    $totalPrice += (int) $price[1]; // Add the price to the total
                 }
             }
-
         }
+
+
+         // Loop through the selected services and add their prices
+        // if (!empty($_POST['service']) && is_array($_POST['service'])) {
+        //     foreach ($_POST['service'] as $selectedService) {
+        //         switch ($selectedService) {
+        //             case 'Hair Botox - 1500':
+        //                 $totalPrice += 1500;
+        //                 break;
+        //             case 'Haircut - 80':
+        //                 $totalPrice += 80;
+        //                 break;
+        //             case 'Cellophane - 300':
+        //                 $totalPrice += 300;
+        //                 break;
+        //             case 'Hair Spa - 300':
+        //                 $totalPrice += 300;
+        //                 break;
+        //             case 'Rebond - 1000':
+        //                 $totalPrice += 1000;
+        //                 break;
+        //             case 'Foot Spa - 300':
+        //                 $totalPrice += 300;
+        //                 break;
+        //             case 'Manicure - 70':
+        //                 $totalPrice += 70;
+        //                 break;
+        //             case 'Blow-Dry - 120':
+        //                 $totalPrice += 120;
+        //                 break;
+        //             case 'Hair Extensions - 600':
+        //                 $totalPrice += 600;
+        //                 break;
+        //             case 'Scalp Treatment - 150':
+        //                 $totalPrice += 150;
+        //                 break;
+        //             case 'Straightening - 300':
+        //                 $totalPrice += 300;
+        //                 break;
+        //             case 'Perm - 250':
+        //                 $totalPrice += 250;
+        //                 break;
+        //         }
+        //     }
+
+        // }
 
         $countQuery = mysqli_query($con, "SELECT COUNT(*) as total FROM tblbook WHERE AptDate = '$adate'");
         $countResult = mysqli_fetch_array($countQuery);
@@ -129,57 +141,6 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
         } else {
             $availabilityMessage = "Sorry, we're fully booked for today. Please try another day.";
         }
-
-
-
-        // Check how many appointments exist for the selected date
-        // $countQuery = mysqli_query($con, "SELECT COUNT(*) as total FROM tblbook WHERE AptDate = '$adate'");
-        // $countResult = mysqli_fetch_array($countQuery);
-        // $totalAppointments = $countResult['total'];
-
-        // if ($totalAppointments < 10) {
-        //     // Insert the appointment if less than 10
-        //     $query = mysqli_query($con, "INSERT INTO tblbook(UserID, AptNumber, AptDate, AptTime, Service, Message, Service_Total_Price) 
-        //         VALUES ('$uid', '$aptnumber', '$adate', '$atime', '$service', '$msg', '$totalPrice')");
-
-        //     if ($query) {
-        //         $ret = mysqli_query($con, "SELECT AptNumber FROM tblbook WHERE tblbook.UserID='$uid' ORDER BY ID DESC LIMIT 1;");
-        //         $result = mysqli_fetch_array($ret);
-        //         $_SESSION['aptno'] = $result['AptNumber'];
-
-        //         require __DIR__ . "/../vendor/autoload.php";
-
-        //         $mail = new PHPMailer(true);
-
-        //         try {
-        //             $mail->isSMTP();
-        //             $mail->Host = "smtp.gmail.com";
-        //             $mail->SMTPAuth = true;
-        //             $mail->Username = "leonardr009@gmail.com";
-        //             $mail->Password = "llgp swji majk hqwh";
-        //             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
-        //             $mail->Port = 587;
-
-        //             $mail->setFrom($Uemail);
-        //             $mail->addAddress("leonardr009@gmail.com", "ADMIN");
-
-        //             $mail->isHTML(true);
-        //             $mail->Subject = "Win Salon Appointment Request";
-        //             $aptnumber = $_SESSION['aptno'] = $result['AptNumber'];
-        //             $mail->Body = "Win Salon website has recieved new appointment request : $aptnumber : go to website to see details";
-
-        //             $mail->send();
-        //             echo "<script>window.location.href='booking-history.php'</script>";
-        //         } catch (Exception $e) {
-        //             $availabilityMessage = "Mailer Error: " . $mail->ErrorInfo;
-        //         }
-
-        //     } else {
-        //         $availabilityMessage = "Something Went Wrong. Please try again.";
-        //     }
-        // } else {
-        //     $availabilityMessage = "Sorry, we're fully booked right now. Please try another day.";
-        // }
     }
 }
 ?>
@@ -292,91 +253,35 @@ $(function () {
                         <div style="padding-top: 30px;">
                             <label>Select Service</label>
                             <div class="service-group" id="services">
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="1500" value="Hair Botox - 1500">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Hair Botox</span>
-                                        <span class="service-price">₱1500</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="80" value="Haircut - 80">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Haircut</span>
-                                        <span class="service-price">₱80</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="300" value="Cellophane - 300">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Cellophane</span>
-                                        <span class="service-price">₱300</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="300" value="Hair Spa - 300">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Hair Spa</span>
-                                        <span class="service-price">₱300</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="1000" value="Rebond - 1000">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Rebond</span>
-                                        <span class="service-price">₱1000</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="300" value="Foot Spa - 300">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Foot Spa</span>
-                                        <span class="service-price">₱300</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="70" value="Manicure - 70">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Manicure</span>
-                                        <span class="service-price">₱70</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="120" value="Blow-Dry - 120">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Blow-Dry</span>
-                                        <span class="service-price">₱120</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="600" value="Hair Extensions - 600">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Hair Extensions</span>
-                                        <span class="service-price">₱600</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="150" value="Scalp Treatment - 150">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Scalp Treatment</span>
-                                        <span class="service-price">₱150</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="300" value="Straightening - 300">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Straightening</span>
-                                        <span class="service-price">₱300</span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="checkbox" class="service-checkbox" name="service[]" data-price="250" value="Perm - 250">
-                                    <div class="service-and-price">
-                                        <span class="service-name">Perm</span>
-                                        <span class="service-price">₱250</span>
-                                    </div>
-                                </label>
-                            </div>
+                                <?php
+                                $query = mysqli_query($con, "SELECT * FROM tblservices");
+                                
+                                while ($row = mysqli_fetch_array($query)) {
+                                    $serviceName = $row['ServiceName'];
+                                    $servicePrice = $row['Cost'];
+                                    echo '<label>';
+                                    echo '<input type="checkbox" class="service-checkbox" data-price="' . $servicePrice . '" name="service[]" value="' . $serviceName . ' - ' . $servicePrice . '">';
+                                    echo '<div class="service-and-price">';
+                                    echo '<span class="service-name">' . $serviceName . '</span>';
+                                    echo '<span class="service-price">₱' . $servicePrice . '</span>';
+                                    echo '<span class="service-duration">(';
+                                            $timeInMinutes = $row['Time'];
+
+                                            if ($timeInMinutes < 60) {
+                                                echo $timeInMinutes . " mins";  // For times less than 60 minutes
+                                            } else {
+                                                $hours = floor($timeInMinutes / 60); // Calculate hours
+                                                $minutes = $timeInMinutes % 60; // Calculate remaining minutes
+                                                echo $hours . " hr";  // Print hours
+                                                if ($minutes > 0) {
+                                                    echo " " . $minutes . " mins"; // Append minutes if any
+                                                }
+                                            }
+                                    echo '</div>';
+                                    echo '</label>';
+                                }
+                                ?>
+                            </div>                       
 
                             <div class="total-price">
                                 <span>Total Price:</span>
@@ -567,6 +472,31 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
+    // Function to calculate and update total price
+    function updateTotalPrice() {
+        let totalPrice = 0;
+        $('.service-checkbox:checked').each(function() {
+            // Get the price data from the checkbox
+            totalPrice += parseInt($(this).data('price'));
+        });
+
+        // Update the total price display
+        $('#totalPrice').text('₱' + totalPrice);
+        $('#totalPriceInput').val(totalPrice);  // Update the hidden input for form submission
+    }
+
+    // Event listener for when a checkbox is checked or unchecked
+    $('.service-checkbox').change(function() {
+        updateTotalPrice();
+    });
+
+    // Initial call to set the correct total price when the page loads
+    updateTotalPrice();
+});
+
+
+
 // // Assuming you calculate the total price dynamically
 // let totalPrice = 0; // Example total price value
 
@@ -580,19 +510,19 @@ $(document).ready(function() {
 // // Store the total price in the input field (hidden)
 // totalPriceInput.value = `₱${totalPrice}`;
 
-$(document).ready(function() {
-    // Update the total price when a checkbox is clicked
-    $('input[name="service[]"]').change(function() {
-        let totalPrice = 0;
+// $(document).ready(function() {
+//     // Update the total price when a checkbox is clicked
+//     $('input[name="service[]"]').change(function() {
+//         let totalPrice = 0;
 
-        $('input[name="service[]"]:checked').each(function() {
-            totalPrice += parseInt($(this).data('price'));
-        });
+//         $('input[name="service[]"]:checked').each(function() {
+//             totalPrice += parseInt($(this).data('price'));
+//         });
 
-        $('#totalPrice').text('₱' + totalPrice);
-        $('#totalPriceInput').val(totalPrice); // Update the hidden input
-    });
-});
+//         $('#totalPrice').text('₱' + totalPrice);
+//         $('#totalPriceInput').val(totalPrice); // Update the hidden input
+//     });
+// });
 
 
 
