@@ -9,6 +9,12 @@ error_reporting(0);
 
 if(isset($_POST['submit']))
   {
+    $agree = isset($_POST['agree']) ? $_POST['agree'] : false;
+    if (!$agree) {
+        echo "<script>alert('You must agree to the Terms and Conditions and Privacy Policy to sign up.');</script>";
+        exit;
+    }
+
     $fname=$_POST['firstname'];
     $lname=$_POST['lastname'];
     $contno=$_POST['mobilenumber'];
@@ -317,6 +323,13 @@ return true;
                         </div>
 
                         <a class="nav-link" href="login.php">Already have an account? Login</a>
+
+                        <div style="padding-top: 30px;">
+                            <label style="cursor: pointer; display: flex; align-items: center; gap: 0.5rem">
+                                <input type="checkbox" name="agree" id="agree" required style="width: initial !important; height: initial !important; padding: 1rem !important; border: 1px solid #999; border-radius: 0.3rem; margin-bottom: 0 !important; appearance: auto; width: 1rem !important;height: 1rem !important; padding: 0 !important; cursor: pointer;">
+                                I agree to the <a href="terms-and-conditions.php" target="_blank">Terms and Conditions</a> and <a href="privacy-policy.php" target="_blank">Privacy Policy</a>.
+                            </label>
+                        </div>
                       
                         <button type="submit" class="btn btn-contact" name="submit">Signup</button>
                     </form>

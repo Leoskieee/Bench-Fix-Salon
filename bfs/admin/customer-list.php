@@ -30,7 +30,7 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>BFS || Customer List</title>
+<title>Win Salon | Customer List</title>
 
 <style>
 	.table-wrapper {

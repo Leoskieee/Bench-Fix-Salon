@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2024 at 04:53 AM
+-- Generation Time: Nov 21, 2024 at 01:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,30 +56,32 @@ CREATE TABLE `tblbook` (
   `AptNumber` int(10) DEFAULT NULL,
   `AptDate` date DEFAULT NULL,
   `AptTime` time DEFAULT NULL,
-  `Service` varchar(50) NOT NULL,
+  `Service` varchar(255) NOT NULL,
   `Message` mediumtext DEFAULT NULL,
   `BookingDate` timestamp NULL DEFAULT current_timestamp(),
   `Remark` varchar(250) DEFAULT NULL,
   `Status` varchar(250) DEFAULT NULL,
-  `RemarkDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `RemarkDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `Service_Total_Price` decimal(10,2) DEFAULT 0.00,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tblbook`
 --
 
-INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `Service`, `Message`, `BookingDate`, `Remark`, `Status`, `RemarkDate`) VALUES
-(2, 7, 767068476, '2022-05-14', '09:00:00', '', 'fghfshdgfahgrfgh', '2022-05-12 18:30:00', 'Sorry your appointment has been cancelled', 'Rejected', '2022-05-13 06:14:39'),
-(4, 10, 931783426, '2022-05-18', '15:40:00', '', 'NA', '2022-05-15 05:04:13', NULL, NULL, NULL),
-(5, 10, 284544154, '2022-05-18', '15:40:00', '', 'NA', '2022-05-15 05:04:13', NULL, NULL, NULL),
-(6, 10, 494039785, '2022-05-31', '14:47:00', '', 'NA', '2022-05-15 05:13:24', NULL, NULL, NULL),
-(8, 10, 891247645, '2022-05-28', '20:14:00', '', 'nA', '2022-05-28 08:43:55', 'Your booking is confirmed.', 'Selected', '2022-05-28 08:51:22'),
-(9, 11, 985654240, '2022-05-29', '13:10:00', '', 'NA', '2022-05-29 07:34:47', 'Your appointment is confirmed', 'Selected', '2022-05-29 07:35:36'),
-(10, 13, 877052607, '2024-05-18', '15:05:00', '', 'Hello?', '2024-05-17 06:05:46', 'Okay see you !!!\r\n\r\nThank you for trust in salon.', 'Selected', '2024-05-17 06:08:06'),
-(11, 14, 876388443, '2024-05-22', '18:00:00', '', 'Check!', '2024-05-21 10:54:56', '...', 'Selected', '2024-05-21 10:57:59'),
-(12, 16, 923291897, '2024-10-10', '03:20:00', '', 'wdawd', '2024-10-03 07:20:48', NULL, NULL, NULL),
-(13, 13, 495981114, '2024-10-11', '16:13:00', '', 'wew', '2024-10-10 08:12:06', NULL, NULL, NULL),
-(34, 18, 921108949, '2024-10-11', '14:32:00', 'Hair Treatment', 'asdfasdfasdf', '2024-10-11 04:32:24', NULL, NULL, NULL);
+INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `Service`, `Message`, `BookingDate`, `Remark`, `Status`, `RemarkDate`, `Service_Total_Price`, `deleted_at`) VALUES
+(1, 13, 971075376, '2024-11-19', '09:00:00', 'Haircut - 80, Manicure - 70, Straightening - 300', 'sdrfasdfsdadf', '2024-11-10 11:35:07', 'see you here!', 'Confirmed', '2024-11-10 11:35:42', 600.00, NULL),
+(2, 14, 471275378, '2024-11-20', '10:00:00', 'Massage - 200, Facial - 150', 'Looking forward to it', '2024-11-12 07:20:10', 'Don\'t forget!', 'Pending', NULL, 350.00, NULL),
+(3, 15, 881375379, '2024-11-21', '11:30:00', 'Haircut - 80', 'Excited!', '2024-11-13 04:00:00', 'Confirmed for 11:30 AM', 'Confirmed', '2024-11-13 04:10:00', 80.00, NULL),
+(4, 16, 261475380, '2024-11-22', '19:00:00', 'Pedicure - 100, Hair Color - 250', 'Please be on time', '2024-11-14 06:45:50', NULL, 'Cancelled', '2024-11-15 12:36:33', 350.00, NULL),
+(5, 17, 351575381, '2024-11-23', '16:00:00', 'Haircut - 80', 'Repeat client', '2024-11-15 02:30:15', 'Reminder sent', 'Confirmed', '2024-11-15 02:35:20', 80.00, NULL),
+(6, 18, 441675382, '2024-11-23', '18:00:00', 'Manicure - 70', 'Late booking', '2024-11-16 00:25:05', NULL, 'Pending', NULL, 70.00, NULL),
+(7, 19, 531775383, '2024-11-19', '12:00:00', 'Haircut - 80, Massage - 200', 'Combined service', '2024-11-10 12:10:15', NULL, 'Confirmed', '2024-11-10 12:15:00', 280.00, NULL),
+(8, 23, 621875384, '2024-11-18', '15:00:00', 'Haircut - 80', 'See you soon!', '2024-11-09 10:45:25', NULL, 'Pending', '2024-11-15 11:50:56', 80.00, NULL),
+(9, 24, 711975385, '2024-11-24', '13:30:00', 'Facial - 150', 'First appointment', '2024-11-17 03:30:35', 'Looking forward to it', 'Confirmed', '2024-11-15 11:50:59', 150.00, NULL),
+(10, 22, 801075386, '2024-11-17', '09:30:00', 'Massage - 200', 'Relaxing session', '2024-11-08 08:00:00', NULL, 'Pending', NULL, 200.00, NULL),
+(11, 13, 941138977, '2024-11-21', '10:00:00', 'Hair Botox - 1500, Scalp Treatment - 150', 'dasfsadfsdf', '2024-11-19 03:12:44', 'were fully book in this date', 'Rejected', '2024-11-19 03:13:23', 1650.00, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,16 +99,6 @@ CREATE TABLE `tblcontact` (
   `EnquiryDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `IsRead` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tblcontact`
---
-
-INSERT INTO `tblcontact` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`) VALUES
-(5, 'Kajal', 'Sharma', 9879878798, 'kajal@gmail.com', 'guhgjhg', '2022-05-10 08:43:18', 1),
-(6, 'Anuj', 'Kumar', 1234567890, 'ak@gmail.com', 'Need booking for marriage', '2022-06-01 01:05:47', 1),
-(7, 'asd', 'asdasd', 523734, 'das@gmail.com', 'this is a message', '2024-05-14 08:30:19', 1),
-(8, 'Leonard', 'Rosales', 9081685149, 'leonardrosales360@gmail.com', 'How to appointment?', '2024-05-17 06:05:10', 1);
 
 -- --------------------------------------------------------
 
@@ -127,22 +119,10 @@ CREATE TABLE `tblinvoice` (
 --
 
 INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate`) VALUES
-(4, 7, 4, 138889283, '2022-05-13 11:42:21'),
-(5, 7, 9, 138889283, '2022-05-13 11:42:21'),
-(6, 7, 16, 138889283, '2022-05-13 11:42:21'),
-(7, 8, 3, 555850701, '2022-05-13 11:42:51'),
-(8, 8, 6, 555850701, '2022-05-13 11:42:51'),
-(9, 8, 9, 555850701, '2022-05-13 11:42:51'),
-(10, 8, 11, 555850701, '2022-05-13 11:42:51'),
-(13, 10, 1, 330026346, '2022-05-28 08:51:42'),
-(14, 10, 2, 330026346, '2022-05-28 08:51:42'),
-(15, 11, 2, 379060040, '2022-05-29 07:36:17'),
-(16, 11, 5, 379060040, '2022-05-29 07:36:18'),
-(17, 11, 6, 379060040, '2022-05-29 07:36:18'),
-(18, 11, 12, 379060040, '2022-05-29 07:36:18'),
-(19, 11, 3, 460087279, '2022-06-01 01:03:58'),
-(20, 13, 1, 873748277, '2024-05-17 06:11:08'),
-(21, 13, 2, 873748277, '2024-05-17 06:11:08');
+(1, 13, 2, 663929695, '2024-11-10 11:38:46'),
+(2, 13, 7, 663929695, '2024-11-10 11:38:46'),
+(3, 13, 10, 663929695, '2024-11-10 11:38:46'),
+(4, 13, 11, 663929695, '2024-11-10 11:38:46');
 
 -- --------------------------------------------------------
 
@@ -228,7 +208,8 @@ INSERT INTO `tblservices` (`ID`, `ServiceName`, `ServiceDescription`, `Cost`, `I
 (9, 'Hair Extensions', 'Adding length or volume with synthetic or natural hair extensions. Can be applied through different methods (clip-in, tape-in, sew-in).', 600, 'hair-extension.jpg'),
 (10, 'Scalp Treatment', 'Treatments to improve scalp health, reduce dandruff, or stimulate hair growth. Often involves massaging and specialized products.', 150, 'scalp-treatment.jpg'),
 (11, 'Straightening', 'Temporary or permanent straightening using a flat iron or chemical treatments like Japanese straightening or relaxers.', 300, 'straightening.jpg'),
-(12, 'Perm', 'Chemical treatment to create curls or waves that last for months.', 250, 'perm.jpg');
+(12, 'Perm', 'Chemical treatment to create curls or waves that last for months.', 250, 'perm.jpg'),
+(13, 'test', 'testq', 100, 'placeholder-img.jpg');
 
 -- --------------------------------------------------------
 
@@ -243,6 +224,7 @@ CREATE TABLE `tbluser` (
   `MobileNumber` bigint(10) DEFAULT NULL,
   `Email` varchar(120) DEFAULT NULL,
   `Password` varchar(120) DEFAULT NULL,
+  `account_activation_hash` varchar(64) DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -250,23 +232,15 @@ CREATE TABLE `tbluser` (
 -- Dumping data for table `tbluser`
 --
 
-INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`) VALUES
-(2, 'Rishi Singh', NULL, 5689234578, 'rishi@gmail.com', '202cb962ac59075b964b07152d234b70', '2021-10-16 14:37:49'),
-(3, 'Abir Singh', NULL, 2147483649, 'abir@gmail.com', '202cb962ac59075b964b07152d234b70', '2021-10-16 14:40:20'),
-(4, 'Test Sample', NULL, 8797977779, 'sample@gmail.com', '202cb962ac59075b964b07152d234b70', '2020-04-08 05:51:06'),
-(5, 'Anuj  kumar', NULL, 1236547890, 'test@test.com', 'f925916e2754e5e03f75dd58a5733251', '2020-05-07 08:52:34'),
-(6, 'ghhg', NULL, 8888888888, 'c@gmail.com', '202cb962ac59075b964b07152d234b70', '2021-12-14 05:27:32'),
-(7, 'Tina', 'Khan', 9789797987, 'tina@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-05-11 09:21:46'),
-(8, 'Hima', 'Sharma', 8979798789, 'hima@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-05-11 09:23:16'),
-(10, 'Anuj', 'Kumar', 1425362514, 'ak@gmail.com', 'f925916e2754e5e03f75dd58a5733251', '2022-05-15 05:03:32'),
-(11, 'John', 'Doe', 1452632541, 'johndoe@gmail.com', 'f925916e2754e5e03f75dd58a5733251', '2022-05-29 07:33:58'),
-(12, 'juan', 'pablo', 964534231, 'jp@gmail.com', '32250170a0dca92d53ec9624f336ca24', '2024-05-14 07:34:12'),
-(13, 'Leo', 'Nard', 9081685149, 'leonardrosales360@gmail.com', '9697ad4e728e0cb2758df02341aff2c6', '2024-05-14 10:15:28'),
-(14, 'jeff', 'masagca', 9949237820, 'jepoymasagca21@gmail.com', '908df52be49d76717b84e45d4a5d7fe7', '2024-05-21 10:49:54'),
-(15, 'jericho', 'delamente', 9161694900, 'j.delamente12360@gmail.com', '9684149e2c74583d7a1343000c1504ce', '2024-06-01 05:52:42'),
-(16, 'Lhine', 'Amando', 9456475951, 'lhineamando45@gmail.com', '0373930ec3a52b66e0d06c8981ba5770', '2024-09-26 06:06:26'),
-(17, 'Lance Vincent', 'Buhat', 9168825525, 'lancebuhat01@gmail.com', 'bd7012bd534bf4dd2a300530d3cf92bd', '2024-09-26 06:20:45'),
-(18, 'Juan', 'Dela Cruz', 926536973, 'fahatmahmabang9@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '2024-10-10 16:33:51');
+INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `account_activation_hash`, `RegDate`) VALUES
+(13, 'Leo', 'Nard', 9081685149, 'leonardrosales360@gmail.com', '9697ad4e728e0cb2758df02341aff2c6', NULL, '2024-05-14 10:15:28'),
+(14, 'jeff', 'masagca', 9949237820, 'jepoymasagca21@gmail.com', '908df52be49d76717b84e45d4a5d7fe7', NULL, '2024-05-21 10:49:54'),
+(15, 'jericho', 'delamente', 9161694900, 'j.delamente12360@gmail.com', '9684149e2c74583d7a1343000c1504ce', NULL, '2024-06-01 05:52:42'),
+(16, 'Lhine', 'Amando', 9456475951, 'lhineamando45@gmail.com', '0373930ec3a52b66e0d06c8981ba5770', NULL, '2024-09-26 06:06:26'),
+(17, 'Lance Vincent', 'Buhat', 9168825525, 'lancebuhat01@gmail.com', 'bd7012bd534bf4dd2a300530d3cf92bd', NULL, '2024-09-26 06:20:45'),
+(19, 'asd', 'asd', 911212121, 'asd@gmail.com', '1a1dc91c907325c69271ddf0c944bc72', NULL, '2024-10-26 10:06:27'),
+(23, 'john paul', 'dela cruz', 907005014, 'jpvillaruel02@gmail.com', '32250170a0dca92d53ec9624f336ca24', NULL, '2024-11-01 02:38:37'),
+(24, 'Fahatmah', 'Mabang', 926536973, 'fahatmahmabang9@gmail.com', '1a1dc91c907325c69271ddf0c944bc72', 'cb887ea1481bd1b6c28528f6cb09362787075dff47260fd397cb71892e5eb14a', '2024-11-04 01:52:50');
 
 --
 -- Indexes for dumped tables
@@ -336,19 +310,19 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `tblbook`
 --
 ALTER TABLE `tblbook`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tblcontact`
 --
 ALTER TABLE `tblcontact`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tblpage`
@@ -366,13 +340,13 @@ ALTER TABLE `tblproducts`
 -- AUTO_INCREMENT for table `tblservices`
 --
 ALTER TABLE `tblservices`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

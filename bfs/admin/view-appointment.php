@@ -59,7 +59,7 @@ if(isset($_POST['submit']))
 
             if ($status == "Confirmed") {
               $mail->Subject = "Win Salon Appointment Approved";
-              $mail->Body = "Hello $UserName,<br><br>Your appointment request (ID: $aptId) has been approved. Please check your account for details.<br><br>Thanks for choosing Win Salon!";
+              $mail->Body = "Hello $UserName,<br><br>Your appointment request (Reference ID: $aptId) has been approved. Please check your account for details.<br><br>Thanks for choosing Win Salon!";
             } elseif ($status == "Rejected") {
                 $mail->Subject = "Win Salon Appointment Rejected";
                 $mail->Body = "Hello $UserName,<br><br>We regret to inform you that your appointment request : $aptId : has been rejected. Please check your account for further details.<br><br>Best regards,<br>Win Salon";
@@ -80,7 +80,7 @@ if(isset($_POST['submit']))
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>BFS || View Appointment</title>
+<title>Win Salon | View Appointment</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->

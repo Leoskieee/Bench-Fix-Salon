@@ -100,6 +100,43 @@
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
+        .search-bar-container {
+        margin: 1rem 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .search-form {
+        display: flex;
+        }
+
+        .search-input {
+        padding: 0.5rem;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        }
+
+        .search-btn {
+        padding: 0.5rem 1rem;
+        background-color: hotpink;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 0.5rem;
+        }
+
+        .search-btn:hover {
+        background-color: #d11c7c;
+        }
+
+        #search-results {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
     </style>
 </head>
 
@@ -140,7 +177,14 @@
                             <?php } ?>
                         </ul>
 
-                        <?php if (isset($_SESSION['bpmsuid'])) { ?>
+                        <div class="search-bar-container">
+                            <form class="search-form" id="search-form" onsubmit="return false;">
+                                <input type="text" id="search-input" placeholder="Search for services or products..." class="search-input">
+                                <!-- <button type="submit" class="search-btn">Search</button> -->
+                            </form>
+                        </div>
+
+                        <?php if (strlen($_SESSION['bpmsuid']) > 0) { ?>
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle custom-dropdown-toggle no-arrow" href="#" id="userMenu" role="button" 
@@ -152,6 +196,7 @@
                                         <li><a class="dropdown-item custom-dropdown-item" href="change-password.php">Setting</a></li>
                                         <li><a class="dropdown-item custom-dropdown-item" href="booking-history.php">Booking History</a></li>
                                         <li><a class="dropdown-item custom-dropdown-item" href="book-appointment.php">Book Salon</a></li>
+                                        <li><a class="dropdown-item custom-dropdown-item" href="feedback.php">Feedback</a></li>
                                         <li><a class="dropdown-item custom-dropdown-item" href="logout.php">Logout</a></li>
                                     </ul>
                                 </li>
@@ -162,9 +207,36 @@
             </div>
         </header>
     </section>
+    <section class="w3l-header-4 header-sticky" style="display: flex; align-items: center; justify-content: center;">
+        <div id="search-results" class="row" style="width: 100%; max-width: 1300px; margin-inline: 0 !important;">
+            <!-- Search results will be dynamically added here -->
+        </div>
+    </section>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- search bar -->
+     <script>
+        document.getElementById('search-input').addEventListener('input', function () {
+            const query = this.value;
+
+            // Fetch results dynamically
+            fetch('includes/fetch_query.php', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `query=${encodeURIComponent(query)}`
+            })
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById('search-results').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+     </script>
 </body>
 
 </html>
