@@ -74,6 +74,22 @@ while ($row=mysqli_fetch_array($ret)) {
                         <hr>
                         <h5 class="para"><?php  echo $row['ServiceName'];?></h5>
                         <p class="para "><?php  echo $row['ServiceDescription'];?> </p>
+                        <p class="para " style="color: hotpink;">
+                          Service Duration:
+                          <?php 
+                              $timeInMinutes = $row['Time']; 
+                              if ($timeInMinutes < 60) {
+                                  echo $timeInMinutes . " minutes";
+                              } else {
+                                  $hours = floor($timeInMinutes / 60); // Calculate hours
+                                  $minutes = $timeInMinutes % 60; // Calculate remaining minutes
+                                  echo $hours . " hour" . ($hours > 1 ? "s" : ""); // Add 's' if hours > 1
+                                  if ($minutes > 0) {
+                                      echo " " . $minutes . " minutes"; // Append minutes if any
+                                  }
+                              }
+                          ?>
+                        </p>
                         <p class="para " style="color: hotpink;"> Cost of Service: ₱<?php  echo $row['Cost'];?> </p>
                            
                     </div>
