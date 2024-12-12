@@ -17,7 +17,7 @@ echo "<script>window.location.href='unreadenq.php'</script>";
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>BFS || Manage Read Inquiry</title>
+<title>Win Salon | Manage Read Inquiry</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->

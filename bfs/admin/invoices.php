@@ -17,7 +17,7 @@ echo "<script>window.location.href='invoices.php'</script>";
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>BFS || Invoices</title>
+<title>Win Salon | Invoices</title>
 
 <style>
 	/* Default styles for buttons in the table */
