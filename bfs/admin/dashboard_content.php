@@ -6,33 +6,46 @@ require_once('tcpdf/tcpdf.php');
 include('includes/dbconnection.php');
 
 // Fetch the data you want in your report
-$totalcust = mysqli_num_rows(mysqli_query($con, "SELECT count(*) FROM tbluser"));
-$totalappointment = mysqli_num_rows(mysqli_query($con, "SELECT count(*) FROM tblbook"));
+$query1 = mysqli_query($con, "SELECT COUNT(*) as total FROM tbluser");
+$row1 = mysqli_fetch_assoc($query1);
+$totalcust = $row1['total'];
+
+$query2 = mysqli_query($con, "SELECT COUNT(*) as total FROM tblbook");
+$row2 = mysqli_fetch_assoc($query2);
+$totalappointment = $row2['total'];
+
 $totalaccepted = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tblbook WHERE Status='Confirmed'"));
+
 $totalrejected = mysqli_num_rows(mysqli_query($con, "select * from tblbook where Status='Rejected'"));
 
 // today sales
-$todaySales = mysqli_num_rows(mysqli_query($con, ("select tblinvoice.ServiceId as ServiceId, tblservices.Cost
- from tblinvoice 
-  join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)=CURDATE()")));
-$yesterdaySales = mysqli_num_rows(mysqli_query($con, ("select tblinvoice.ServiceId as ServiceId, tblservices.Cost
- from tblinvoice 
-  join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)=CURDATE()-1")));
-// $lastWeekSales = mysqli_num_rows(mysqli_query($con, ("select tblinvoice.ServiceId as ServiceId, tblservices.Cost
-//  from tblinvoice 
-//   join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)>=(DATE(NOW()) - INTERVAL 7 DAY)")));
-$result = mysqli_query($con, "SELECT SUM(tblservices.Cost) AS lastWeekSales
-    FROM tblinvoice
-    JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId
-    WHERE date(PostingDate) >= DATE(NOW()) - INTERVAL 7 DAY
-    AND date(PostingDate) < CURDATE()");
+$todaysale = 0;
+$query6 = mysqli_query($con, "
+		SELECT SUM(tblservices.Cost) as total
+		FROM tblinvoice
+		JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId
+		WHERE DATE(tblinvoice.PostingDate) = CURDATE();
+");
+$row6 = mysqli_fetch_assoc($query6);
+$todaySales = $row6['total'];
 
-$row = mysqli_fetch_assoc($result);
-$lastWeekSales = $row['lastWeekSales']; // This will now contain the total sales amount for the last week
+$query7 = mysqli_query($con, "
+		SELECT SUM(tblservices.Cost) as total
+		FROM tblinvoice
+		JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId
+		WHERE DATE(tblinvoice.PostingDate) = CURDATE() - INTERVAL 1 DAY;
+");
+$row7 = mysqli_fetch_assoc($query7);
+$yesterdaySales = $row7['total'] ?? 0;
 
-// $totalSales = mysqli_num_rows(mysqli_query($con, ("select tblinvoice.ServiceId as ServiceId, tblservices.Cost
-//  from tblinvoice 
-//   join tblservices  on tblservices.ID=tblinvoice.ServiceId")));
+$query8 = mysqli_query($con, "
+		SELECT SUM(tblservices.Cost) as total
+		FROM tblinvoice
+		JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId
+		WHERE DATE(tblinvoice.PostingDate) >= CURDATE() - INTERVAL 7 DAY;
+");
+$row8 = mysqli_fetch_assoc($query8);
+$lastWeekSales = $row8['total'] ?? 0;
 
 $result = mysqli_query($con, "SELECT SUM(tblservices.Cost) AS totalSales
     FROM tblinvoice
