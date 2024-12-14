@@ -1,8 +1,11 @@
 <?php 
 session_start();
 error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include('includes/dbconnection.php');
-include('includes/check_availability.php');
+// include('includes/check_availability.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -105,7 +108,8 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
                     $result = mysqli_fetch_array($ret);
                     $_SESSION['aptno'] = $result['AptNumber'];
 
-                require __DIR__ . "/vendor/autoload.php";
+                // require __DIR__ . "/vendor/autoload.php";
+                require __DIR__ . "../../vendor/autoload.php";
 
                     $mail = new PHPMailer(true);
 
@@ -277,7 +281,7 @@ $(function () {
                                                     echo " " . $minutes . " mins"; // Append minutes if any
                                                 }
                                             }
-                                    echo '</div>';
+                                    echo ') </ span> </div>';
                                     echo '</label>';
                                 }
                                 ?>

@@ -270,6 +270,7 @@ if ($_GET['delid']) {
 									<th>Name</th>
 									<!-- <th>Mobile Number</th>  -->
 									<th>Date</th>
+                                    <th>Service</th>
 									<!-- <th>Time<th> -->
 									<!-- <th>Status</th> -->
 									<th>Action</th> 
@@ -278,7 +279,7 @@ if ($_GET['delid']) {
 							<tbody>
     <?php
     $query = "SELECT tbluser.FirstName, tbluser.LastName, tbluser.MobileNumber, tblbook.ID AS bid, tblbook.AptNumber, 
-              tblbook.AptDate, tblbook.AptTime, tblbook.Status
+              tblbook.AptDate, tblbook.AptTime, tblbook.Status, tblbook.Service
               FROM tblbook
               JOIN tbluser ON tbluser.ID = tblbook.UserID
               $filter_sql
@@ -301,6 +302,7 @@ if ($_GET['delid']) {
                 <td><?php echo $row['FirstName']; ?> <?php echo $row['LastName']; ?></td>
                 <!-- <td><?php // echo $row['MobileNumber']; ?></td> -->
                 <td><?php echo $row['AptDate']; ?></td> 
+                <td><?php echo $row['Service']; ?></td> 
                 <!-- <td><?php  //echo date("g:i A", strtotime($row['AptTime'])); ?></td> -->
                 <!-- <td class="font-w600">
                     <?php 
