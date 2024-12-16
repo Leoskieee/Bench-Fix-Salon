@@ -100,6 +100,10 @@
               <a href="feedbacks.php" class="chart-nav"><i class="fa fa-file-text-o nav_icon"></i>Feedback</a>
             </li>
 
+             <!-- <li>
+              <a href="reset-tables.php" class="chart-nav"><i class="fa fa-file-text-o nav_icon"></i>Reset Data</a>
+            </li> -->
+
           </ul>
           <div class="clearfix"> </div>
           <!-- //sidebar-collapse -->

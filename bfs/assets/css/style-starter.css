@@ -3047,6 +3047,7 @@
 
 .w3l-inner-banner-main .about {
   background: url(../images/13.jpg) no-repeat center;
+  /* background: url(../images/win-salon-imgs/salon-img-1.jpg) no-repeat center; */
 }
 
 .w3l-inner-banner-main .services {
@@ -3504,11 +3505,12 @@
 }
 .w3l-hero-headers-9 .slide-one,.w3l-hero-headers-9 .slide-two {
   background: white;
-  /* background-image: url('../images/1.jpg'); */
+  background-image: url('../images/win-salon-imgs/salon-img-1.jpg');
+  background-position: center center;
 }
-/* .w3l-hero-headers-9 .slide-two { */
-  /* background-image: url('../images/2.jpg'); */
-/* } */
+.w3l-hero-headers-9 .slide-two {
+  background-image: url('../images/win-salon-imgs/salon-img-7.jpg');
+}
 .w3l-hero-headers-9 .slide,
 .w3l-hero-headers-9 .css-slider {
   height: 700px;
@@ -3631,7 +3633,7 @@
 }
 .w3l-teams-15 .team-single-main {
   padding: 130px 0px;
-  background: url(../images/3.jpg) no-repeat center;
+  background: url(../images/win-salon-imgs/salon-img-7.jpg) no-repeat center center;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;

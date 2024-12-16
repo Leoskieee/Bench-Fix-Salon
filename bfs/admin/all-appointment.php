@@ -5,30 +5,12 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['bpmsaid']==0)) {
   header('location:logout.php');
   } else{
-
-// if($_GET['delid']){
-// $sid=$_GET['delid'];
-// mysqli_query($con,"delete from tblbook where ID ='$sid'");
-// echo "<script>alert('Data Deleted');</script>";
-// echo "<script>window.location.href='all-appointment.php'</script>";
-//           }
 if ($_GET['delid']) {
     $sid = $_GET['delid'];
     mysqli_query($con, "UPDATE tblbook SET deleted_at = NOW() WHERE ID = '$sid'");
     echo "<script>alert('Appointment Archived');</script>";
     echo "<script>window.location.href='all-appointment.php'</script>";
 }
-// // Pagination setup
-//     $limit = 10; // Limit of records per page
-//     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
-//     $offset = ($page - 1) * $limit; // Offset calculation
-
-//     // Get total records
-//     $result = mysqli_query($con, "SELECT COUNT(*) AS total FROM tblbook WHERE deleted_at IS NULL OR deleted_at < NOW() - INTERVAL 30 DAY");
-//     $row = mysqli_fetch_assoc($result);
-//     $total_records = $row['total'];
-//     $total_pages = ceil($total_records / $limit); // Calculate total pages
-
 
 // Pagination setup
     $limit = 10; // Records per page

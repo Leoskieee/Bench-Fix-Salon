@@ -1,6 +1,9 @@
 <?php 
 session_start();
 error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['bpmsuid']==0)) {
   header('location:logout.php');
@@ -75,7 +78,7 @@ $(function () {
                    <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment Details</h4>
                         <?php
                           $cid=$_GET['aptnumber'];
-                          $ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Service, tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.AptNumber='$cid'");
+                          $ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Service, tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate, tblbook.Service_Total_Price from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.AptNumber='$cid'");
 
                           $cnt=1;
                           while ($row=mysqli_fetch_array($ret)) {
@@ -114,7 +117,11 @@ $(function () {
                               <th>Service</th>
                               <td><?php  echo $row['Service'];?></td>
                             </tr>
-                            
+
+                            <tr>
+                              <th>Total Price</th>
+                              <td>₱ <?php  echo $row['Service_Total_Price'];?></td>
+                            </tr>                            
                             
                             <tr>
                               <th>Apply Date</th>

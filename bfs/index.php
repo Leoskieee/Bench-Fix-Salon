@@ -84,10 +84,10 @@ $(function () {
                         </div>
                     </div>
                         <div class="column col-lg-4 col-md-6 col-sm-6 back-image  ">
-                            <img src="assets/images/5.jpg" alt="product" class="img-responsive ">
+                            <img src="assets/images/win-salon-imgs/salon-img-3.jpg" alt="product" class="img-responsive ">
                         </div>
                         <div class="column col-lg-4 col-md-6 col-sm-6 back-image2 ">
-                            <img src="assets/images/6.jpg" alt="product" class="img-responsive ">
+                            <img src="assets/images/win-salon-imgs/salon-img-7.jpg" alt="product" class="img-responsive ">
                           </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ $(function () {
         <div class="container">
             <div class=" row">
                 <div class="col-lg-6 back-image">
-                    <img src="assets/images/b1.jpg" alt="product" class="img-responsive ">
+                    <img src="assets/images/win-salon-imgs/salon-img-9.jpg" alt="product" class="img-responsive" style="height: 400px; width: 100%; object-fit: cover;">
                 </div>
                 <div class="col-lg-6 about-right-faq align-self">
                   <h3 class="title-big">Your Go-To Salon for Premium Hair and Beauty Care</h3>

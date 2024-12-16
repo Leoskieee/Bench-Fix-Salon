@@ -8,19 +8,35 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['bpmsaid']==0)) {
   header('location:logout.php');
   } else{ 
-if($_GET['delid']){
-$sid=$_GET['delid'];
-mysqli_query($con,"delete from tblinvoice where BillingId ='$sid'");
-echo "<script>alert('Data Deleted');</script>";
-echo "<script>window.location.href='invoices.php'</script>";
-          }
+		if (isset($_GET['delid'])) {
+				$sid = $_GET['delid'];
+				// Update the deleted_at column to archive the invoice
+				mysqli_query($con, "UPDATE tblinvoice SET deleted_at = NOW() WHERE BillingId = '$sid'");
+				echo "<script>alert('Invoice Archived');</script>";
+				echo "<script>window.location.href='invoices.php'</script>";
+		}
+
+		if (isset($_GET['restoreid']) && !empty($_GET['restoreid'])) {
+				$sid = $_GET['restoreid'];
+				// Reset the deleted_at column to restore the invoice
+				mysqli_query($con, "UPDATE tblinvoice SET deleted_at = NULL WHERE BillingId = '$sid'");
+				echo "<script>alert('Invoice Restored');</script>";
+				echo "<script>window.location.href='invoices.php'</script>";
+		}
+
+// if($_GET['delid']){
+// $sid=$_GET['delid'];
+// mysqli_query($con,"delete from tblinvoice where BillingId ='$sid'");
+// echo "<script>alert('Data Deleted');</script>";
+// echo "<script>window.location.href='invoices.php'</script>";
+//           }
 
 
   ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Win Salon | Invoices</title>
+<title>Win Salon | Sales</title>
 
 <style>
 	html, body {
@@ -180,13 +196,8 @@ td a.btn {
 			<div class="main-page">
 				<a href="dashboard_content.php" class="btn btn-primary" style="margin-bottom: 2rem;" target="_blank">Print Total Sales Report</a>
 				<div class="tables">
-					<h3 class="title1">Invoice List</h3>
-					<!-- naglagay ako ng test query for filter form so if need niyo idelete just query this sa may tblinvoice sql
-								DELETE FROM tblinvoice
-								WHERE Userid IN (13, 14, 15, 16, 17, 19, 23, 25, 26, 27)
-								AND ServiceId IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10); 
-					-->
-					<form method="get" action="" class="filter-form">
+					<h3 class="title1">Sales</h3>
+					<!-- <form method="get" action="" class="filter-form">
 						<select name="sales" class="filter-select">
 							<option value="">Sales</option>
 							<option value="Today">Today Sales</option>
@@ -195,39 +206,71 @@ td a.btn {
 							<option value="Total">Total Sales</option>
 						</select>
 						<button type="submit" class="filter-button">Filter</button>
+					</form> -->
+
+					<form method="get" action="" class="filter-form">
+							<select name="sales" class="filter-select">
+									<option value="">Sales</option>
+									<option value="Today">Today Sales</option>
+									<option value="Yesterday">Yesterday Sales</option>
+									<option value="SevenDays">Last 7 Days Sales</option>
+									<option value="Total">Total Sales</option>
+							</select>
+							<select name="archive" class="filter-select">
+									<option value="notArchived" <?php echo (!isset($_GET['archive']) || $_GET['archive'] == 'notArchived') ? 'selected' : ''; ?>>Not Archived</option>
+									<option value="archived" <?php echo (isset($_GET['archive']) && $_GET['archive'] == 'archived') ? 'selected' : ''; ?>>Archived</option>
+							</select>
+							<button type="submit" class="filter-button">Filter</button>
 					</form>
 
 					<div class="table-responsive bs-example widget-shadow">
 						<?php
 						$condition = "";
 						$filter = isset($_GET['sales']) ? $_GET['sales'] : "";
+						$archiveFilter = isset($_GET['archive']) ? $_GET['archive'] : "notArchived";
 						$filterTitle = "Total Sales";
 						
 						if ($filter == "Today") {
-							$condition = "WHERE DATE(tblinvoice.PostingDate) = CURDATE()";
-							$filterTitle = "Today Sales";
+								$condition .= " AND DATE(tblinvoice.PostingDate) = CURDATE()";
+								$filterTitle = "Today Sales";
 						} elseif ($filter == "Yesterday") {
-							$condition = "WHERE DATE(tblinvoice.PostingDate) = CURDATE() - INTERVAL 1 DAY";
-							$filterTitle = "Yesterday Sales";
+								$condition .= " AND DATE(tblinvoice.PostingDate) = CURDATE() - INTERVAL 1 DAY";
+								$filterTitle = "Yesterday Sales";
 						} elseif ($filter == "SevenDays") {
-							$condition = "WHERE DATE(tblinvoice.PostingDate) >= CURDATE() - INTERVAL 7 DAY";
-							$filterTitle = "Last 7 Days Sales";
-						} elseif ($filter == "Total") {
-							// No additional condition for total sales
-							$condition = "";
-							$filterTitle = "Total Sales";
+								$condition .= " AND DATE(tblinvoice.PostingDate) >= CURDATE() - INTERVAL 7 DAY";
+								$filterTitle = "Last 7 Days Sales";
+						}
+
+						if ($archiveFilter == "archived") {
+								$condition .= " AND tblinvoice.deleted_at IS NOT NULL";
+								$filterTitle .= " (Archived)";
+						} else {
+								$condition .= " AND tblinvoice.deleted_at IS NULL";
+								$filterTitle .= " (Not Archived)";
 						}
 
 						// Query to join tblinvoice and tblservice and calculate the total cost of services
 						$query = "
-							SELECT DISTINCT tbluser.FirstName, tbluser.LastName, tblinvoice.BillingId, 
-								DATE(tblinvoice.PostingDate) AS invoicedate, 
-								tblservices.Cost
-							FROM tbluser 
-							JOIN tblinvoice ON tbluser.ID = tblinvoice.Userid 
-							JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId
-							$condition
-							ORDER BY tblinvoice.ID DESC";
+						SELECT DISTINCT tbluser.FirstName, tbluser.LastName, tblinvoice.BillingId, 
+									DATE(tblinvoice.PostingDate) AS invoicedate, 
+									tblservices.Cost, tblinvoice.deleted_at
+						FROM tbluser 
+						JOIN tblinvoice ON tbluser.ID = tblinvoice.Userid 
+						JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId
+						-- WHERE (tblinvoice.deleted_at IS NULL OR tblinvoice.deleted_at IS NOT NULL) 
+						WHERE 1=1 $condition
+						ORDER BY tblinvoice.ID DESC";
+
+
+						// $query = "
+						// 	SELECT DISTINCT tbluser.FirstName, tbluser.LastName, tblinvoice.BillingId, 
+						// 		DATE(tblinvoice.PostingDate) AS invoicedate, 
+						// 		tblservices.Cost
+						// 	FROM tbluser 
+						// 	JOIN tblinvoice ON tbluser.ID = tblinvoice.Userid 
+						// 	JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId
+						// 	$condition
+						// 	ORDER BY tblinvoice.ID DESC";
 
 						$result = mysqli_query($con, $query);
 						$cnt = 1;
@@ -245,8 +288,8 @@ td a.btn {
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>Invoice Id</th>
-									<th>Invoice Date</th>
+									<th>Sales Id</th>
+									<th>Sales Date</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -262,9 +305,19 @@ td a.btn {
 										<td><?php echo $row['BillingId']; ?></td>
 										<td><?php echo $row['invoicedate']; ?></td>
 										<td class="btn-container">
-											<a href="view-invoice.php?invoiceid=<?php echo $row['BillingId']; ?>" class="btn btn-primary">View</a>
-											<a href="invoices.php?delid=<?php echo $row['BillingId']; ?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+												<a href="view-invoice.php?invoiceid=<?php echo $row['BillingId']; ?>" class="btn btn-primary">View</a>
+												<?php if (isset($row['deleted_at']) && $row['deleted_at'] != NULL) { ?>
+														<!-- If deleted_at is not NULL, show the restore button -->
+														<a href="invoices.php?restoreid=<?php echo $row['BillingId']; ?>" class="btn btn-success" onClick="return confirm('Are you sure you want to restore this invoice?')">Restore</a>
+												<?php } else { ?>
+														<!-- If deleted_at is NULL, show the archive button -->
+														<a href="invoices.php?delid=<?php echo $row['BillingId']; ?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to archive this invoice?')">Archive</a>
+												<?php } ?>
 										</td>
+										<!-- <td class="btn-container">
+											<a href="view-invoice.php?invoiceid=<?php //echo $row['BillingId']; ?>" class="btn btn-primary">View</a>
+											<a href="invoices.php?delid=<?php //echo $row['BillingId']; ?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+										</td> -->
 									</tr>
 								<?php
 									$cnt++;
