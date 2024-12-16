@@ -1,6 +1,9 @@
 <?php
 session_start();
 error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include('includes/dbconnection.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -40,7 +43,7 @@ if(isset($_POST['submit']))
     $UserName = $results['Firstname'] . ' ' . $results['Lastname'];
     $aptId = $results['AptNumber'];
     
-    require __DIR__ . "/../vendor/autoload.php";
+    require __DIR__ . "/../../vendor/autoload.php";
 
         $mail = new PHPMailer(true);
 

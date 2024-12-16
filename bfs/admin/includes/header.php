@@ -94,6 +94,7 @@ $name=$row['AdminName'];
               <ul class="dropdown-menu drp-mnu">
                 <li> <a href="change-password.php"><i class="fa fa-cog"></i> Settings</a> </li> 
                 <li> <a href="admin-profile.php"><i class="fa fa-user"></i> Profile</a> </li> 
+                <li> <a href="reset-tables.php"><i class="fa fa-cog"></i> Manage Database</a> </li> 
                 <li> <a href="../login.php"><i class="fa fa-sign-out"></i> Logout</a> </li>
               </ul>
             </li>

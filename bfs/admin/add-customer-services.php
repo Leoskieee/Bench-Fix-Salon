@@ -16,7 +16,7 @@ for($i=0;$i<count($sid);$i++){
 $ret=mysqli_query($con,"insert into tblinvoice(Userid,ServiceId,BillingId) values('$uid','$svid','$invoiceid');");
 
 
-echo '<script>alert("Invoice created successfully. Invoice number is "+"'.$invoiceid.'")</script>';
+echo '<script>alert("Sales created successfully. Sales number is "+"'.$invoiceid.'")</script>';
 echo "<script>window.location.href ='invoices.php'</script>";
 }
 }

@@ -32,62 +32,18 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
          // Initialize total price variable
         // $totalPrice = $_POST['Service_Total_Price'];
         
-        $totalPrice = 0; // Initialize total price to 0
-        if (!empty($_POST['service']) && is_array($_POST['service'])) {
-            foreach ($_POST['service'] as $selectedService) {
-                // Extract the price from the service value (assuming format "ServiceName - Price")
-                $price = explode(' - ', $selectedService);
-                if (isset($price[1])) {
-                    $totalPrice += (int) $price[1]; // Add the price to the total
-                }
-            }
-        }
-
-
-         // Loop through the selected services and add their prices
+        // $totalPrice = 0; // Initialize total price to 0
         // if (!empty($_POST['service']) && is_array($_POST['service'])) {
         //     foreach ($_POST['service'] as $selectedService) {
-        //         switch ($selectedService) {
-        //             case 'Hair Botox - 1500':
-        //                 $totalPrice += 1500;
-        //                 break;
-        //             case 'Haircut - 80':
-        //                 $totalPrice += 80;
-        //                 break;
-        //             case 'Cellophane - 300':
-        //                 $totalPrice += 300;
-        //                 break;
-        //             case 'Hair Spa - 300':
-        //                 $totalPrice += 300;
-        //                 break;
-        //             case 'Rebond - 1000':
-        //                 $totalPrice += 1000;
-        //                 break;
-        //             case 'Foot Spa - 300':
-        //                 $totalPrice += 300;
-        //                 break;
-        //             case 'Manicure - 70':
-        //                 $totalPrice += 70;
-        //                 break;
-        //             case 'Blow-Dry - 120':
-        //                 $totalPrice += 120;
-        //                 break;
-        //             case 'Hair Extensions - 600':
-        //                 $totalPrice += 600;
-        //                 break;
-        //             case 'Scalp Treatment - 150':
-        //                 $totalPrice += 150;
-        //                 break;
-        //             case 'Straightening - 300':
-        //                 $totalPrice += 300;
-        //                 break;
-        //             case 'Perm - 250':
-        //                 $totalPrice += 250;
-        //                 break;
+        //         // Extract the price from the service value (assuming format "ServiceName - Price")
+        //         $price = explode(' - ', $selectedService);
+        //         if (isset($price[1])) {
+        //             $totalPrice += (int) $price[1]; // Add the price to the total
         //         }
         //     }
-
         // }
+
+        $totalPrice = (int) $_POST['Service_Total_Price']; // Get the total price from the form
 
         $countQuery = mysqli_query($con, "SELECT COUNT(*) as total FROM tblbook WHERE AptDate = '$adate'");
         $countResult = mysqli_fetch_array($countQuery);
@@ -475,60 +431,6 @@ $(document).ready(function() {
         }).appendTo(this);
     });
 });
-
-$(document).ready(function() {
-    // Function to calculate and update total price
-    function updateTotalPrice() {
-        let totalPrice = 0;
-        $('.service-checkbox:checked').each(function() {
-            // Get the price data from the checkbox
-            totalPrice += parseInt($(this).data('price'));
-        });
-
-        // Update the total price display
-        $('#totalPrice').text('₱' + totalPrice);
-        $('#totalPriceInput').val(totalPrice);  // Update the hidden input for form submission
-    }
-
-    // Event listener for when a checkbox is checked or unchecked
-    $('.service-checkbox').change(function() {
-        updateTotalPrice();
-    });
-
-    // Initial call to set the correct total price when the page loads
-    updateTotalPrice();
-});
-
-
-
-// // Assuming you calculate the total price dynamically
-// let totalPrice = 0; // Example total price value
-
-// // Get the elements
-// let totalPriceElement = document.getElementById('totalPrice');
-// let totalPriceInput = document.getElementById('totalPriceInput');
-
-// // Update the displayed total price
-// totalPriceElement.textContent = `₱${totalPrice}`;
-
-// // Store the total price in the input field (hidden)
-// totalPriceInput.value = `₱${totalPrice}`;
-
-// $(document).ready(function() {
-//     // Update the total price when a checkbox is clicked
-//     $('input[name="service[]"]').change(function() {
-//         let totalPrice = 0;
-
-//         $('input[name="service[]"]:checked').each(function() {
-//             totalPrice += parseInt($(this).data('price'));
-//         });
-
-//         $('#totalPrice').text('₱' + totalPrice);
-//         $('#totalPriceInput').val(totalPrice); // Update the hidden input
-//     });
-// });
-
-
 
 </script>
 <!-- /move top -->

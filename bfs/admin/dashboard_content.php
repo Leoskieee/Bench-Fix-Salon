@@ -27,7 +27,7 @@ $query6 = mysqli_query($con, "
 		WHERE DATE(tblinvoice.PostingDate) = CURDATE();
 ");
 $row6 = mysqli_fetch_assoc($query6);
-$todaySales = $row6['total'];
+$todaySales = $row6['total'] ?? 0;
 
 $query7 = mysqli_query($con, "
 		SELECT SUM(tblservices.Cost) as total

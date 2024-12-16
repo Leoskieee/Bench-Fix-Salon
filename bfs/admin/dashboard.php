@@ -196,7 +196,7 @@ if(isset($_POST['generate_pdf'])) {
 									WHERE DATE(tblinvoice.PostingDate) = CURDATE();
 							");
 							$row6 = mysqli_fetch_assoc($query6);
-							$todaysale = $row6['total'];
+							$todaysale = $row6['total'] ?? 0;
 							?>
 							<div class="stats-left">
 								<h5>Today</h5>

@@ -59,7 +59,7 @@ $(function () {
         <div class="container">
             <div class="cwp4-two row">
                 <div class="cwp4-image col-xl-6">
-                    <img src="assets/images/b2.jpg" alt="product" class="img-responsive about-me">
+                    <img src="assets/images/win-salon-imgs/salon-img-7.jpg" alt="product" class="img-responsive about-me" style="height: 400px; width: 100%; object-fit: cover; object-position: center center">
                 </div>
                 <div class="cwp4-text col-xl-6">
                     <div class="posivtion-grid">
@@ -118,7 +118,7 @@ while ($row=mysqli_fetch_array($ret)) {
 	
 	</div>
 	<div class="col-lg-6 ">
-		<img src="assets/images/b3.jpg" alt="product" class="img-responsive about-me">
+		<img src="assets/images/win-salon-imgs/salon-img-8.jpg" alt="product" class="img-responsive about-me" style="height: 400px; width: 100%; object-fit: cover; object-position: center center">
 	</div>
 
 </div>
