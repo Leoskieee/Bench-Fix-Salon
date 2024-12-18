@@ -43,7 +43,7 @@ if(isset($_POST['submit']))
     $UserName = $results['Firstname'] . ' ' . $results['Lastname'];
     $aptId = $results['AptNumber'];
     
-    require __DIR__ . "/../../vendor/autoload.php";
+    require __DIR__ . "/../vendor/autoload.php";
 
         $mail = new PHPMailer(true);
 

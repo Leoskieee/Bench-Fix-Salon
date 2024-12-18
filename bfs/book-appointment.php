@@ -65,7 +65,7 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
                     $_SESSION['aptno'] = $result['AptNumber'];
 
                 // require __DIR__ . "/vendor/autoload.php";
-                require __DIR__ . "../../vendor/autoload.php";
+                require __DIR__ . "/vendor/autoload.php";
 
                     $mail = new PHPMailer(true);
 
