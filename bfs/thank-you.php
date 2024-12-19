@@ -71,7 +71,7 @@ Appointment Confirmation
             <div>
                 
  
-                    <h4 class="w3ls_head">Thank you for applying. Your Appointment no is <?php echo $_SESSION['aptno'];?> </h4>
+                    <h4 class="w3ls_head" style="line-height: 1.5;">Thank you for applying. Please wait for 30 minutes for your appointment <br> confirmation and wait for your reference number that will be sent through your email.</h4>
                     
        
     </div>

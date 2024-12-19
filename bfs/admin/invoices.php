@@ -194,7 +194,7 @@ td a.btn {
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
-				<a href="dashboard_content.php" class="btn btn-primary" style="margin-bottom: 2rem;" target="_blank">Print Total Sales Report</a>
+				<a href="report.php" class="btn btn-primary" target="_blank" style="margin-bottom: 2rem;">Raw Reports</a>
 				<div class="tables">
 					<h3 class="title1">Sales</h3>
 					<!-- <form method="get" action="" class="filter-form">

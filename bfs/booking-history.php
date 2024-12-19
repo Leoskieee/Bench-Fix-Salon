@@ -47,6 +47,9 @@ if (strlen($_SESSION['bpmsuid']==0)) {
                                 <tr>
                                     <th>#</th>
                                     <th>Appointment Date</th>
+                                    <th>Time</th>
+                                    <th>Service</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -64,7 +67,7 @@ if (strlen($_SESSION['bpmsuid']==0)) {
                                 // Update query to include LIMIT, OFFSET, and exclude deleted bookings
                                 $query = mysqli_query($con, "
                                     SELECT tbluser.ID as uid, tbluser.FirstName, tbluser.LastName, tbluser.Email, tbluser.MobileNumber, 
-                                        tblbook.ID as bid, tblbook.AptNumber, tblbook.AptDate, tblbook.AptTime, 
+                                        tblbook.ID as bid, tblbook.AptNumber, tblbook.AptDate, tblbook.AptTime, tblbook.Service,
                                         tblbook.Message, tblbook.BookingDate, tblbook.Status 
                                     FROM tblbook 
                                     JOIN tbluser ON tbluser.ID = tblbook.UserID 
@@ -78,6 +81,9 @@ if (strlen($_SESSION['bpmsuid']==0)) {
                                     <tr>
                                         <td><?php echo $cnt;?></td>
                                         <td><p><?php echo $row['AptDate']; ?></p></td>
+                                        <td><?php echo date("g:i A", strtotime($row['AptTime'])); ?></td>
+                                        <td><p><?php echo $row['Service']; ?></p></td>
+                                        <td><?php echo !empty($row['Status']) ? $row['Status'] : 'Pending'; ?></td>
                                         <td><a href="appointment-detail.php?aptnumber=<?php echo $row['AptNumber'];?>" class="btn btn-primary">View</a></td>
                                     </tr>
                                 <?php 
